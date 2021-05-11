@@ -1,0 +1,23 @@
+{
+  "name": "aoi.js-light",
+  "version": "1.0.0",
+  "description": "Aoi.js only lighter.",
+  "main": "package/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/L0R4/aoi.js-light.git"
+  },
+  "author": "lrd7",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/L0R4/aoi.js-light/issues"
+  },
+  "homepage": "https://github.com/L0R4/aoi.js-light#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js-light": "^3.5.11"
+  }
+}
