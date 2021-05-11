@@ -11,6 +11,6 @@ module.exports = async (d) => {
     });
     process.exit();
   } catch (e) {
-    return throw new Error(`:x: Unable to Restart! Error: ${e.message}`);
+    throw new Error(`:x: Unable to Restart! Error: ${e.message}`);
   }
 };

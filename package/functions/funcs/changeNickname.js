@@ -7,24 +7,24 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [userID = d.message.author.id, nickname] = inside.splits;
 
   if (!nickname)
-    return throw new Error(
+    throw new Error(
       `:x: Nickname can't be empty in \`$changeNickname${inside}\``
     );
 
   const member = await d.message.guild.members.fetch(userID).catch((err) => {});
 
   if (!member)
-    return throw new Error(`:x: Invalid user ID in \`$changeNickname${inside}\``);
+    throw new Error(`:x: Invalid user ID in \`$changeNickname${inside}\``);
 
   const m = await member.setNickname(nickname.addBrackets()).catch((err) => {});
 
   if (!m)
-    return throw new Error(
+    throw new Error(
       `:x: Failed to change nickname for user ${member.user.username}`
     );
 

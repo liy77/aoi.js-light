@@ -6,13 +6,13 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [roleID, separator = ", "] = inside.splits;
 
   const role = d.message.guild.roles.cache.get(roleID);
 
-  if (!role) return throw new Error(`:x: Invalid role ID in \`$rolePerms${inside}\``);
+  if (!role) throw new Error(`:x: Invalid role ID in \`$rolePerms${inside}\``);
 
   return {
     code: code.replaceLast(

@@ -13,7 +13,7 @@ const addCmdReactions = async (d) => {
       .react(reaction.addBrackets())
       .catch((err) => {});
 
-    if (!react) return throw new Error(`❌ Failed to add '${reaction}' reaction `);
+    if (!react) throw new Error(`❌ Failed to add '${reaction}' reaction `);
   }
 
   return {

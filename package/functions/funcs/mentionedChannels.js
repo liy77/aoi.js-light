@@ -5,11 +5,11 @@ const mentionedChannels = d => {
   const inside = d.unpack()
   const err = d.inside(inside)
 
-  if (err) return throw new Error(err)
+  if (err) throw new Error(err)
   
   const [ mention, returnChannel = "no" ] = inside.splits
   
-  if (isNaN(mention)) return throw new Error(`❌ Invalid mention number in \`$mentionedChannels${inside}\``)
+  if (isNaN(mention)) throw new Error(`❌ Invalid mention number in \`$mentionedChannels${inside}\``)
   
   const channel = d.message.mentions.channels.array()[Number(mention) - 1]
   

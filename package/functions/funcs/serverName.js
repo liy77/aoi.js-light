@@ -6,7 +6,7 @@ module.exports = async d => {
     if (inside.inside) {
         const guild = d.client.guilds.cache.get(inside.inside)
 
-        if (!guild) return throw new Error(`:x: Invalid guild ID in \`$serverName${inside}\``)
+        if (!guild) throw new Error(`:x: Invalid guild ID in \`$serverName${inside}\``)
 
         return {
             code: code.replaceLast(`$serverName${inside}`, guild.name.deleteBrackets())

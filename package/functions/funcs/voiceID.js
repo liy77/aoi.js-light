@@ -7,7 +7,7 @@ module.exports = async (d) => {
   const member =
     (await d.message.guild.members.fetch(option).catch(d.noop)) || null;
 
-  if (!member) return throw new Error(`:x: Invalid user ID in \`$voiceID${inside}\``);
+  if (!member) throw new Error(`:x: Invalid user ID in \`$voiceID${inside}\``);
 
   return {
     code: code.replaceLast(

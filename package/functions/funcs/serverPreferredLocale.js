@@ -10,7 +10,7 @@ module.exports = async (d) => {
   const guild = d.client.guilds.cache.get(guildID);
 
   if (!guild)
-    return throw new Error(
+    throw new Error(
       `❌ Invalid guild ID in \`$serverPreferredLocale${data.total}\``
     );
 

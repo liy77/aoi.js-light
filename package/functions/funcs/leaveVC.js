@@ -2,7 +2,7 @@ module.exports = async (d) => {
   const state = d.message.guild.voice;
 
   if (!(state && state.channel))
-    return throw new Error(`:x: Bot is not in any voice channel`);
+    throw new Error(`:x: Bot is not in any voice channel`);
 
   await state.channel.leave();
 

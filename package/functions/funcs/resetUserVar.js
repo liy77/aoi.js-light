@@ -4,7 +4,7 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [
     variable,
@@ -12,12 +12,12 @@ module.exports = async (d) => {
   ] = inside.splits;
 
   if (d.client.variables[inside.inside] === undefined)
-    return throw new Error(
+    throw new Error(
       `:x: Invalid variable '${variable}' in \`$resetUserVar${inside}\``
     );
 
   if (!guildID)
-    return throw new Error(`:x: No guildID provided in \`$resetUserVar${inside}\``);
+    throw new Error(`:x: No guildID provided in \`$resetUserVar${inside}\``);
 
   const all = await d.client.db.all("main", {
     filter: (x) => x.key.startsWith(`${variable}_${guildID}_`),

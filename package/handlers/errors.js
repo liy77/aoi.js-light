@@ -84,7 +84,7 @@ const errorHandler = async (d, errorMessage, returnMsg = false, channel) => {
 		const command = errorMessage.split("{execute:")[1].split("}")[0]
 		errorMessage = errorMessage.replace(`{execute:${command}}`, "")
 		const cmd = d.client.awaited_commands.find(c => c.name === command)
-		if (!cmd) return throw new Error(`:x: Invalid awaited command '${command}' in {execute:${command}}`)
+		if (!cmd) throw new Error(`:x: Invalid awaited command '${command}' in {execute:${command}}`)
 		await d.interpreter(d.client, d.message, d.args, cmd)
 	}
 

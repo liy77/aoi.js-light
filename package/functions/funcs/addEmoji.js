@@ -7,7 +7,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const options = ([url, name, returnEmoji = "no", ...roleIDs] = inside.splits);
 
@@ -24,7 +24,7 @@ module.exports = async (d) => {
     .catch((err) => {});
 
   if (!emoji)
-    return throw new Error(`:x: Failed to create emoji! url: ${url}, name: ${name} `);
+    throw new Error(`:x: Failed to create emoji! url: ${url}, name: ${name} `);
 
   return {
     code: code.replaceLast(

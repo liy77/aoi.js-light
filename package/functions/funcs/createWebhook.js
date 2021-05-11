@@ -7,7 +7,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [
     channelID,
@@ -20,7 +20,7 @@ module.exports = async (d) => {
   const channel = d.client.channels.cache.get(channelID);
 
   if (!channel)
-    return throw new Error(`:x: Invalid channel ID in \`$createWebhook${inside}\``);
+    throw new Error(`:x: Invalid channel ID in \`$createWebhook${inside}\``);
 
   const webhook = await channel
     .createWebhook(name, {
@@ -28,7 +28,7 @@ module.exports = async (d) => {
     })
     .catch((err) => null);
 
-  if (!webhook) return throw new Error(`:x: Failed to create webhook`);
+  if (!webhook) throw new Error(`:x: Failed to create webhook`);
 
   return {
     code: code.replaceLast(

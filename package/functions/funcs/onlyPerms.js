@@ -7,7 +7,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
 
     const fields = inside.splits
 
@@ -18,7 +18,7 @@ module.exports = async d => {
     for (const field of fields) {
         const perm = keyPerms[field]
 
-        if (!perm) return throw new Error(`:x: Invalid perm '${field}' in \`$onlyPerms${inside}\``)
+        if (!perm) throw new Error(`:x: Invalid perm '${field}' in \`$onlyPerms${inside}\``)
 
         else perms.push(perm)
     }

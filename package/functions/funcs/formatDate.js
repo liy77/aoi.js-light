@@ -7,7 +7,7 @@ module.exports = (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   let [
     date = Date.now().toLocaleString("en-us", { timeZone: d.timezone }),
@@ -18,7 +18,7 @@ module.exports = (d) => {
   );
 
   if (isNaN(checkIsValid.getTime())) {
-    return throw new Error(
+    throw new Error(
       `❌ Invalid date for $formatDate in \`$formatDate${inside}\`!`
     );
   }

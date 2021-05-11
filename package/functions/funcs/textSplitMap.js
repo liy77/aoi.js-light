@@ -7,7 +7,7 @@ module.exports = async d => {
   const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
  
   const content = []
 
@@ -17,7 +17,7 @@ module.exports = async d => {
     for (const command of commands) {
       const cmd = d.client.awaited_commands.find(c => c.name === command)
 
-      if (!cmd) return throw new Error(`:x: Invalid awaited command '${command}' in \`$textSplitMap${inside}\``)
+      if (!cmd) throw new Error(`:x: Invalid awaited command '${command}' in \`$textSplitMap${inside}\``)
 
       const newArgs = [...d.args]
 

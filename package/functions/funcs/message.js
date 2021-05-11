@@ -9,7 +9,7 @@ const message = d => {
 	
     if (["last", ">"].includes(n.addBrackets())) n = d.args.length 
     
-    if (isNaN(n)) return throw new Error(`❌ Invalid number in \`$message${inside}\``)
+    if (isNaN(n)) throw new Error(`❌ Invalid number in \`$message${inside}\``)
     
     code = code.replaceLast(`$message${inside}`, d.args[Number(n) - 1] ? d.args[Number(n) - 1].deleteBrackets() : "")
   } else {

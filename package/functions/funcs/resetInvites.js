@@ -5,7 +5,7 @@ module.exports = async (d) => {
   const [guild = d.message.guild.id, userID] = inside.splits;
 
   if (!d.client.guilds.cache.has(guild))
-    return throw new Error(`:x: Invalid guildID in \`$resetInvites${inside.total}\``);
+    throw new Error(`:x: Invalid guildID in \`$resetInvites${inside.total}\``);
 
   let success;
 
@@ -13,7 +13,7 @@ module.exports = async (d) => {
     const user = await d.client.users.fetch(userID).catch((err) => {});
 
     if (!user)
-      return throw new Error(`:x: Invalid userID in \`$resetInvites${inside.total}\``);
+      throw new Error(`:x: Invalid userID in \`$resetInvites${inside.total}\``);
 
     success = await d.client.db.delete(
       "main",

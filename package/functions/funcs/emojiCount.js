@@ -12,7 +12,7 @@ module.exports = async (d) => {
   var guild = d.client.guilds.cache.get(guildID)
 
   if (guild === undefined) {
-    return throw new Error('❌ Invalid guild ID!')
+    throw new Error('❌ Invalid guild ID!')
   }
 
   if (type === "animated") {

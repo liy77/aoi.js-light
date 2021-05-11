@@ -9,7 +9,7 @@ module.exports = async d => {
 const inside = d.unpack()
 const err = d.inside(inside)
 
-if (err) return throw new Error(err)
+if (err) throw new Error(err)
 
  const fields = inside.splits
 
@@ -17,7 +17,7 @@ if (err) return throw new Error(err)
 
  const errorMessage = fields.join(";")
 
- if (!ms(time)) return throw new Error(`❌ Invalid time '${time}' in \`$serverCooldown${inside}\``)
+ if (!ms(time)) throw new Error(`❌ Invalid time '${time}' in \`$serverCooldown${inside}\``)
 
  const item = await d.client.db.get("main", `cooldown_${d.command.name}_${d.message.guild.id}`)
 

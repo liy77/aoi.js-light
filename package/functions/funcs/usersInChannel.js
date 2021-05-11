@@ -4,13 +4,13 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
     
     const [channelID, options = "username", separator = ", "] = inside.splits
     
     const channel = d.message.guild.channels.cache.get(channelID)
     
-    if (!channel) return throw new Error(`❌ Invalid channel ID in \`$usersInChannel${inside}\``)
+    if (!channel) throw new Error(`❌ Invalid channel ID in \`$usersInChannel${inside}\``)
         
     const users = channel.members.map(m => options ==="mention" ? m.user.toString() : m.user[options.toLowerCase()]).join(separator).removeBrackets()
         

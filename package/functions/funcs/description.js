@@ -8,7 +8,7 @@ const description = (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   return {
     code: d.command.code.replaceLast(`$description${inside}`, ""),

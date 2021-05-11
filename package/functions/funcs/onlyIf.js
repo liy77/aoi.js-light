@@ -6,7 +6,7 @@ const onlyIf = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const p = inside.splits;
 
@@ -24,7 +24,7 @@ const onlyIf = async (d) => {
   const op = operators(condition);
 
   if (!op)
-    return throw new Error(`:x: No valid operator in \`$onlyIf${inside}\``);
+    throw new Error(`:x: No valid operator in \`$onlyIf${inside}\``);
 
   const fields = condition.split(op);
 

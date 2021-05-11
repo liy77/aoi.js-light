@@ -7,7 +7,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [webhookID, webhookToken] = inside.splits;
 
@@ -16,13 +16,13 @@ module.exports = async (d) => {
     .catch((err) => null);
 
   if (!webhook)
-    return throw new Error(
+    throw new Error(
       `❌ Invalid webhook ID or token in \`$deleteWebhook${inside}\``
     );
 
   const w = await webhook.delete().catch((err) => null);
 
-  if (!w) return throw new Error(`❌ Failed to delete webhook`);
+  if (!w) throw new Error(`❌ Failed to delete webhook`);
 
   return {
     code: code.replaceLast(`$deleteWebhook${inside}`, ""),

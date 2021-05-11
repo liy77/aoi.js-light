@@ -6,11 +6,11 @@ module.exports = async d => {
  const inside = d.unpack()
  const err = d.inside(inside)
 
- if (err) return throw new Error(err) 
+ if (err) throw new Error(err) 
  
  const option = Object.keys(voiceStateOptions).find(opt => opt === inside.inside) 
  
- if (!option) return throw new Error(`❌ Invalid option in \`$newState${inside}\``) 
+ if (!option) throw new Error(`❌ Invalid option in \`$newState${inside}\``) 
  
  const executor = voiceStateOptions[option].split(";").slice(1).join(";")
  

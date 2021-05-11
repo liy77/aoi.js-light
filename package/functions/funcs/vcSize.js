@@ -2,10 +2,10 @@ module.exports = async d =>{
     const code = d.command.code
     let inside = d.unpack()
     let err = d.inside(inside)
-    if(err) return throw new Error(err)
+    if(err) throw new Error(err)
     let [type,guildID = d.message.guild.id] = inside.splits 
     let res =0
-    if(!["channels","users","songs"].includes(type)) return throw new Error(`:x: Invalid Type Provided In $vcSize${inside}`) 
+    if(!["channels","users","songs"].includes(type)) throw new Error(`:x: Invalid Type Provided In $vcSize${inside}`) 
     let c = d.client.voice.connections
 
         if(!c.size ==0) return res = 0
@@ -36,7 +36,7 @@ module.exports = async d =>{
 if(c.size == 0){res = 0}
         const guild = d.client.guilds.cache.get(guildID) 
 
-        if(!guild) return throw new Error(`:x: Invalid guildID Provided in $vcSize${inside}`) 
+        if(!guild) throw new Error(`:x: Invalid guildID Provided in $vcSize${inside}`) 
 
 
 

@@ -5,11 +5,11 @@ module.exports = async d => {
  const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
 
  const [ variable, value, userID = d.message.author.id ] = inside.splits
 
- if (d.client.variables[variable] === undefined) return throw new Error(`❌ Variable '${variable}' not found`)
+ if (d.client.variables[variable] === undefined) throw new Error(`❌ Variable '${variable}' not found`)
 
  d.client.db.set("main", `${variable}_${userID}`, value)
  

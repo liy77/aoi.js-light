@@ -6,13 +6,13 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
  
     let [channelID, messageID, option] = inside.splits
     
     let channel = d.client.channels.cache.get(channelID)
     
-    if (!channel) return throw new Error(`:x: Invalid channel ID in 1st field of \`$msg${inside}\`.`)
+    if (!channel) throw new Error(`:x: Invalid channel ID in 1st field of \`$msg${inside}\`.`)
     
 
 
@@ -22,7 +22,7 @@ module.exports = async d => {
 
  if (!result && (option != "isdeleted")) result = undefined
 
- if(!result)  return throw new Error(`:x: Missing option in 3rd field of \`$msg${inside}\`.`)
+ if(!result)  throw new Error(`:x: Missing option in 3rd field of \`$msg${inside}\`.`)
  if(![
     "author",
     "authormention",
@@ -44,7 +44,7 @@ module.exports = async d => {
     "cleancontent",
     "guildname",
     "url"
-].includes(result.toLowerCase())) return throw new Error(`:x: Invalid option in 3rd field of \`$msg${inside}\`.`)
+].includes(result.toLowerCase())) throw new Error(`:x: Invalid option in 3rd field of \`$msg${inside}\`.`)
 
 
 try {
@@ -97,7 +97,7 @@ try {
         };
     
 } catch {
-return throw new Error(`:x: Invalid message ID in 2nd field of \`$msg${inside}\``)
+throw new Error(`:x: Invalid message ID in 2nd field of \`$msg${inside}\``)
 }
 
 

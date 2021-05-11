@@ -73,7 +73,7 @@ module.exports = async (d) => {
     
       .catch((err) => null);
 
-    if (!request) return throw new Error(`❌ Failed to create slash command`);
+    if (!request) throw new Error(`❌ Failed to create slash command`);
 
     return {
       code: code.replaceLast(`$createSlashCommand${inside}`, ""),
@@ -81,6 +81,6 @@ module.exports = async (d) => {
   }
 }
   catch (e) {
-    return throw new Error(`:x: ${e.message}`);
+    throw new Error(`:x: ${e.message}`);
   }
 };

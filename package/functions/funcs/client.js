@@ -8,7 +8,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   let option = inside.inside;
 
@@ -25,7 +25,7 @@ module.exports = async (d) => {
     .filter((x) => x)
     .join(", ");
 
-  if (!option) return throw new Error(`:x: Missing property in \`$client${inside}\`.`);
+  if (!option) throw new Error(`:x: Missing property in \`$client${inside}\`.`);
   if (
     ![
       "name",
@@ -53,7 +53,7 @@ module.exports = async (d) => {
       "ispublic"
     ].includes(option)
   )
-    return throw new Error(`:x: Invalid property in \`$client${inside}\`.`);
+    throw new Error(`:x: Invalid property in \`$client${inside}\`.`);
 
   switch (option) {
     case "name":

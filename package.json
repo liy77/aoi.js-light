@@ -1,6 +1,6 @@
 {
   "name": "aoi.js-light",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Aoi.js only lighter.",
   "main": "package/index.js",
   "scripts": {

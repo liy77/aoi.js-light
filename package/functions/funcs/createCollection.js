@@ -7,7 +7,7 @@ module.exports = async (d) => {
 
   const name = code.split("$createCollection")[r].after();
 
-  if (!name.inside) return throw new Error(`:x: Invalid usage in $ban${inside}`);
+  if (!name.inside) throw new Error(`:x: Invalid usage in $ban${inside}`);
 
   d.client.collections[name.inside.addBrackets()] = new Collection();
 

@@ -8,7 +8,7 @@ module.exports = async d => {
     if (!after.inside) {
         const server = d.client.servers.get(d.message.guild.id) 
         
-        if (!server) return throw new Error(`:x: Nothing is being played!`) 
+        if (!server) throw new Error(`:x: Nothing is being played!`) 
         
         return {
             code: code.replaceLast(`$queue`, server.songs.slice(0, 10).map((song, index) => {
@@ -30,7 +30,7 @@ module.exports = async d => {
     
     const server = d.client.servers.get(d.message.guild.id)
 
-    if (!server) return throw new Error(`:x: Nothing is being played!`)
+    if (!server) throw new Error(`:x: Nothing is being played!`)
 
   /*let k = 10;
 

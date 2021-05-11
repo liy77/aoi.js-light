@@ -3,7 +3,7 @@ module.exports = async d => {
 
     const server = d.client.servers.get(d.message.guild.id)
 
-    if(!server) return throw new Error(`:x: Nothing is being played!`)
+    if(!server) throw new Error(`:x: Nothing is being played!`)
 
     server.connection.dispatcher.pause(true)
 

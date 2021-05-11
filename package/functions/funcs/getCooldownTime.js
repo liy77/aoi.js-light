@@ -10,7 +10,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [time, type, name, id, MS = "no"] = inside.splits;
 
@@ -23,7 +23,7 @@ module.exports = async (d) => {
   }[type];
 
   if (!types)
-    return throw new Error(`❌ Invalid cooldown type on \`$getCooldownTime${inside}\``);
+    throw new Error(`❌ Invalid cooldown type on \`$getCooldownTime${inside}\``);
 
   const times = require("ms")(time);
 

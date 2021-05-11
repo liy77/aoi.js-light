@@ -11,7 +11,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [
     channelID,
@@ -27,21 +27,21 @@ module.exports = async (d) => {
   const channel = d.client.channels.cache.get(channelID);
 
   if (!channel)
-    return throw new Error(
+    throw new Error(
       `❌ Invalid channel ID in \`$awaitReactionsUntil${inside}\``
     );
 
   const msg = await channel.messages.fetch(messageID).catch((err) => null);
 
   if (!msg)
-    return throw new Error(
+    throw new Error(
       `❌ Invalid message ID in \`$awaitReactionsUntil${inside}\``
     );
 
   const timer = ms(time);
 
   if (!timer)
-    return throw new Error(`❌ Invalid duration in \`$awaitReactionsUntil${inside}\``);
+    throw new Error(`❌ Invalid duration in \`$awaitReactionsUntil${inside}\``);
 
   const reactions = reactionOrReactions.addBrackets().split(",");
 
@@ -50,7 +50,7 @@ module.exports = async (d) => {
   const counts = countOrCounts.split(",").map((c) => Number(c));
 
   if (counts.includes(NaN))
-    return throw new Error(`❌ Invalid counts in \`$awaitReactionsUntil${inside}\``);
+    throw new Error(`❌ Invalid counts in \`$awaitReactionsUntil${inside}\``);
 
   let i = 0;
 
@@ -71,7 +71,7 @@ module.exports = async (d) => {
     console.log(counts.length, counts);
 
     if (!cmd && counts[i])
-      return throw new Error(`❌ Invalid awaited command '${commands[i]}' `);
+      throw new Error(`❌ Invalid awaited command '${commands[i]}' `);
 
     msg
       .awaitReactions(filter, {

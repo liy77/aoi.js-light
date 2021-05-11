@@ -10,7 +10,7 @@ module.exports = async d => {
         
         const channel = d.client.channels.cache.get(inside) 
         
-        if (!channel) return throw new Error(`❌ Invalid channel ID in \`$getChannelSlowmode${after}\``) 
+        if (!channel) throw new Error(`❌ Invalid channel ID in \`$getChannelSlowmode${after}\``) 
         
         return {
             code: code.replaceLast(`$getChannelSlowmode${after}`, channel.rateLimitPerUser || 0)

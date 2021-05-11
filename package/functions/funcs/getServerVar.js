@@ -6,7 +6,7 @@ const getServerVar = async d => {
 
 	const inside = code.split("$getServerVar")[r].after()
 
-	if (!inside.inside) return throw new Error(`:x: Invalid usage in $getServerVar${inside}`)
+	if (!inside.inside) throw new Error(`:x: Invalid usage in $getServerVar${inside}`)
 
 	let [variable, guildID] = inside.splits
 	
@@ -20,7 +20,7 @@ const getServerVar = async d => {
  }
  }
 	
-	if (d.client.variables[variable] === undefined) return throw new Error(`❌ Variable '${variable}' not found!`)
+	if (d.client.variables[variable] === undefined) throw new Error(`❌ Variable '${variable}' not found!`)
 
 	let item = await d.client.db.get("main", `${variable}_${guildID}`)
 

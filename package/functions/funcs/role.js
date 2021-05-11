@@ -7,7 +7,7 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   let [id, option] = inside.splits;
 
@@ -23,7 +23,7 @@ module.exports = async (d) => {
   let result = option.toLowerCase();
 
   if (!result)
-    return throw new Error(`:x: Missing option in 2nd field of \`$role${inside}\`.`);
+    throw new Error(`:x: Missing option in 2nd field of \`$role${inside}\`.`);
   if (
     ![
       "created",
@@ -44,7 +44,7 @@ module.exports = async (d) => {
       "timestamp",
     ].includes(result)
   )
-    return throw new Error(`:x: Invalid option in 2nd field of \`$role${inside}\`.`);
+    throw new Error(`:x: Invalid option in 2nd field of \`$role${inside}\`.`);
 
   if (!ROLE & (result !== "isdeleted")) result = undefined;
 

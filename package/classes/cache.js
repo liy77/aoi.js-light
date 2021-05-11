@@ -4,11 +4,11 @@ module.exports = class Cache {
         const cache = options.cache = {};
         const Cache = {
             Guilds: cache.Guilds || true,
-            Channels: cache.Channels || false,
-            Overwrites: cache.Overwrites || false,
-            Roles: cache.Roles || false,
-            Emojis: cache.Emojis || false,
-            Presences: cache.Presences || false,
+            Channels: cache.Channels || true,
+            Overwrites: cache.Overwrites || true,
+            Roles: cache.Roles || true,
+            Emojis: cache.Emojis || true,
+            Presences: cache.Presences || true,
         }
 
         const Bot = new AoiClient({

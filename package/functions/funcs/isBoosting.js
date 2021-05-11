@@ -10,7 +10,7 @@ module.exports = async d => {
 
         const member = await d.message.guild.members.fetch(inside).catch(err => {})
 
-        if (!member) return throw new Error(`:x: Invalid user ID in \`$isBoosting${after}\``)
+        if (!member) throw new Error(`:x: Invalid user ID in \`$isBoosting${after}\``)
 
         return {
             code: code.replaceLast(`$isBoosting${after}`, member.premiumSince !== null)

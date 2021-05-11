@@ -8,7 +8,7 @@ module.exports = async (d) => {
   const [title, value, inline = "no"] = inside.splits;
 
   if (!value || !value.length)
-    return throw new Error(`:x: Fields can't be empty in \`$addField${inside.total}\``);
+    throw new Error(`:x: Fields can't be empty in \`$addField${inside.total}\``);
 
   d.embed.addField(title.addBrackets(), value.addBrackets(), inline === "yes");
 

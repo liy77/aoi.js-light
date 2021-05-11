@@ -6,7 +6,7 @@ let vars = d.vars
 
     let inside = code.split("$let")[r].after()
 
-	if (!inside.inside) return throw new Error(`:x: Invalid usage in $let${inside.total}`)
+	if (!inside.inside) throw new Error(`:x: Invalid usage in $let${inside.total}`)
 
     let [letname, value] = inside.splits
 

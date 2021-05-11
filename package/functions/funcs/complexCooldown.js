@@ -10,19 +10,19 @@ async function complexCooldown(d) {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const type = inside.splits[0].toLowerCase();
   const time = ms(inside.splits[1]);
   const errorMessage = inside.splits.slice(2).join(";");
 
   if (!validTypes.includes(type))
-    return throw new Error(
+    throw new Error(
       `:x: Invalid cooldown type '${type}' in \`$complexCooldown${inside}\``
     );
 
   if (!time)
-    return throw new Error(
+    throw new Error(
       `:x: Invalid time '${time}' in \`$complexCooldown${inside}\``
     );
 

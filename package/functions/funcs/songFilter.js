@@ -8,17 +8,17 @@ module.exports = async d => {
 	const server = d.client.servers.get(d.message.guild.id)
 
 	if (!server || !server.songs.length || !server.connection.dispatcher)
-		return throw new Error(':x: No song is playing')
+		throw new Error(':x: No song is playing')
 		
 	if (!inside.inside)
-		return throw new Error(`:x: Invalid usage in $songFilter${inside.total}`)
+		throw new Error(`:x: Invalid usage in $songFilter${inside.total}`)
 
 	let i = 0
 
 	while (i < inside.splits.length) {
 		const [ type ] = inside.splits[i].split(':')
 
-		if (!songFilters[type]) return throw new Error(`:x: Invalid song filter \`${type}\` in \`$songFilter${inside.total}\``)
+		if (!songFilters[type]) throw new Error(`:x: Invalid song filter \`${type}\` in \`$songFilter${inside.total}\``)
 
 		i++
 	}

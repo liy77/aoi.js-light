@@ -10,7 +10,7 @@ module.exports = d => {
     let n = inside.inside
         
     if (["last", ">"].includes(n.addBrackets())) n = args.length  
-    if (isNaN(n)) return throw new Error(`❌ Invalid number in \`$noMentionMessage${inside}\``)
+    if (isNaN(n)) throw new Error(`❌ Invalid number in \`$noMentionMessage${inside}\``)
     
     code = code.replaceLast(`$noMentionMessage${inside}`, args[Number(n) - 1] ? args[Number(n) - 1].deleteBrackets() : "")
   } else {

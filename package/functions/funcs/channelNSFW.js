@@ -11,7 +11,7 @@ module.exports = async (d) => {
     const channel = d.message.guild.channels.cache.get(id);
 
     if (!channel)
-      return throw new Error(`:x: Invalid channel ID \`$channelNSFW${after}\``);
+      throw new Error(`:x: Invalid channel ID \`$channelNSFW${after}\``);
 
     return {
       code: code.replaceLast(`$channelNSFW${after}`, channel.nsfw),

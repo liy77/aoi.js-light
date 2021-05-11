@@ -3,7 +3,7 @@ module.exports = async d => {
     let code = d.command.code 
     const inside = d.unpack() 
     const err = d.inside(inside) 
-    if(err) return throw new Error(err)
+    if(err) throw new Error(err)
     let res;
     let file = inside.inside 
 

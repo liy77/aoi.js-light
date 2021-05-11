@@ -11,20 +11,20 @@ module.exports = async d => {
 
         var Roles = [];
 
-        if (isNaN(days)) return throw new Error(`:x: Invalid number in \`$pruneMembers${inside}\``)
+        if (isNaN(days)) throw new Error(`:x: Invalid number in \`$pruneMembers${inside}\``)
 
         if (roleIDs) {
 
         for (const role of roleIDs.split(" ").join("").split(":")) {
             let roleExist = d.message.guild.roles.cache.get(role)
-            if (!roleExist) return throw new Error(`:x: Role with ID \`${role}\` not found`)
+            if (!roleExist) throw new Error(`:x: Role with ID \`${role}\` not found`)
                 const r = await Roles.push(role);
         }
     }
 
         const guild = d.client.guilds.cache.get(guildID)
 
-        if (!guild) return throw new Error(`:x: Invalid guild ID in \`$getAuditLogs${inside}\``)
+        if (!guild) throw new Error(`:x: Invalid guild ID in \`$getAuditLogs${inside}\``)
 
         const prune = await guild.members.prune({ dry: true, days: Number(days), roles: Roles }).catch(err => {})
 

@@ -9,7 +9,7 @@ module.exports = async d => {
 		if (d.message.guild) {
 			const member = await d.message.guild.members.fetch(inside.inside).catch(err => null)
 
-			if (!member) return throw new Error(`❌ Invalid user ID in \`$userRoleColor${inside}\``)
+			if (!member) throw new Error(`❌ Invalid user ID in \`$userRoleColor${inside}\``)
 
 			data.code = code.replaceLast(`$userRoleColor${inside}`, member.displayHexColor)
 		} else data.code = code.replaceLast(`$userRoleColor${inside}`, "")

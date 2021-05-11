@@ -12,7 +12,7 @@ module.exports = async d => {
 				timeZone: inside.inside
 			})
 		} catch {
-			return throw new Error(`:x: Invalid timezone in $timezone${inside.total}`)
+			throw new Error(`:x: Invalid timezone in $timezone${inside.total}`)
 		}
 
 		tz = inside.inside

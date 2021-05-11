@@ -6,7 +6,7 @@ const username = async (d) => {
   if (!d.inside(inside)) {
     const user = await d.client.users.fetch(inside.inside).catch((err) => {});
 
-    if (!user) return throw new Error(`❌ Invalid user ID in \`$username${inside}\``);
+    if (!user) throw new Error(`❌ Invalid user ID in \`$username${inside}\``);
 
     code = code.replaceLast(
       `$username${inside}`,

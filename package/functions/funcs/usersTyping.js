@@ -8,7 +8,7 @@ module.exports = async d => {
  
  const channel = d.client.channels.cache.get(channelID) 
  
- if (!channel) return throw new Error(`❌ Invalid channel ID in \`$usersTyping${inside}\``) 
+ if (!channel) throw new Error(`❌ Invalid channel ID in \`$usersTyping${inside}\``) 
  
  const users = [] 
  

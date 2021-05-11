@@ -6,11 +6,11 @@ module.exports = async d => {
 
  const inside = code.split("$getGlobalUserVar")[r].after()
 
- if (!inside.inside) return throw new Error(`:x: Invalid usage in $getGlobalUserVar${inside}`)
+ if (!inside.inside) throw new Error(`:x: Invalid usage in $getGlobalUserVar${inside}`)
 
  const [ variable, userID = d.message.author.id ] = inside.splits
 
- if (d.client.variables[variable] === undefined) return throw new Error(`❌ Variable '${variable}' not found!`)
+ if (d.client.variables[variable] === undefined) throw new Error(`❌ Variable '${variable}' not found!`)
 
  let item = await d.client.db.get("main", `${variable}_${userID}`)
  

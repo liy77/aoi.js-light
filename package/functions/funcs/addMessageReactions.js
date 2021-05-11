@@ -10,21 +10,21 @@ module.exports = async (d) => {
   const channel = d.client.channels.cache.get(channelID);
 
   if (!channel)
-    return throw new Error(
+    throw new Error(
       `❌ Invalid channel ID in \`$addMessageReactions${inside.total}\``
     );
 
   const msg = await channel.messages.fetch(messageID).catch((err) => null);
 
   if (!msg)
-    return throw new Error(
+    throw new Error(
       `❌ Invalid message ID in \`$addMessageReactions${inside.total}\``
     );
 
   for (const reaction of inside.splits.slice(2)) {
     const m = await msg.react(reaction.addBrackets()).catch((err) => null);
 
-    if (!m) return throw new Error(`❌ Failed to react with ${reaction}`);
+    if (!m) throw new Error(`❌ Failed to react with ${reaction}`);
   }
 
   return {

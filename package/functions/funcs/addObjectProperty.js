@@ -7,12 +7,12 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [key, value] = inside.splits;
 
   if (!d.object)
-    return throw new Error(
+    throw new Error(
       `❌ No object present in \`$addObjectProperty${inside.total}\``
     );
 

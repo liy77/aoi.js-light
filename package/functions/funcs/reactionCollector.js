@@ -6,7 +6,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
 
     const [
         messageID,
@@ -17,18 +17,18 @@ module.exports = async d => {
         removeReactions = "no"
     ] = inside.splits
 
-    if (!time) return throw new Error(`:x: Not enough fields in \`$reactionCollector${inside}\``)
+    if (!time) throw new Error(`:x: Not enough fields in \`$reactionCollector${inside}\``)
   
-    if (!ms(time)) return throw new Error(`:x: Failed to parse '${time}' in \`$reactionCollector${inside}\``)
+    if (!ms(time)) throw new Error(`:x: Failed to parse '${time}' in \`$reactionCollector${inside}\``)
 
     const msg = await d.message.channel.messages.fetch(messageID).catch(err => {})
 
-    if (!msg) return throw new Error(`:x: Invalid message ID in \`$reactionCollector${inside}\``)
+    if (!msg) throw new Error(`:x: Invalid message ID in \`$reactionCollector${inside}\``)
 
     for (const reaction of reactionOrReactions.split(" ").join("").split(",")) {
         const r = await msg.react(reaction.addBrackets()).catch(Err => null)
 
-        if (!r) return throw new Error(`:x: Failed to react with '${reaction}'`)
+        if (!r) throw new Error(`:x: Failed to react with '${reaction}'`)
     }
 
     const filter = (reaction, user) => {
@@ -50,11 +50,11 @@ module.exports = async d => {
 
         const command = commandOrCommands.split(" ").join("").split(",")[reactionOrReactions.split(" ").join("").split(",").findIndex(rc => rc.includes(reaction.emoji.name) || rc.includes(reaction.emoji.id))]
 
-        if (!command) return throw new Error(`:x: Command '${command}' not found! (internal error)`)
+        if (!command) throw new Error(`:x: Command '${command}' not found! (internal error)`)
     
         const cmd = d.client.awaited_commands.find(c => c.name === command)
     
-        if (!cmd) return throw new Error(`:x: Command '${command}' not found!`)
+        if (!cmd) throw new Error(`:x: Command '${command}' not found!`)
         
         const { type, flags, createdTimestamp, createdAt, reference, partial, pinnable } = d.message 
         

@@ -11,7 +11,7 @@ module.exports = async d => {
 
         const guild = d.client.guilds.cache.get(guildID)
 
-        if (!guild) return throw new Error(`:x: Invalid guild ID in \`$serverSplash${inside}\``)
+        if (!guild) throw new Error(`:x: Invalid guild ID in \`$serverSplash${inside}\``)
 
         return {
             code: code.replaceLast(`$serverSplash${inside}`, guild.splashURL({

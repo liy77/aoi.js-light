@@ -7,7 +7,7 @@ const noEscapingMessage = d => {
   if (inside.inside) {
     const n = inside.inside
     
-    if (isNaN(n)) return throw new Error(`❌ Invalid number in \`$noEscapingMessage${inside}\``)
+    if (isNaN(n)) throw new Error(`❌ Invalid number in \`$noEscapingMessage${inside}\``)
     
     code = code.replaceLast(`$noEscapingMessage${inside}`, d.args[Number(n) - 1] ? d.args[Number(n) - 1] : "")
   } else {

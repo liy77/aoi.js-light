@@ -6,13 +6,13 @@ module.exports = async d => {
  const inside = d.unpack()
  const err = d.inside(inside)
 
- if (err) return throw new Error(err)
+ if (err) throw new Error(err)
  
  const [roleID, ...pms] = inside.splits
  
  const role = d.message.guild.roles.cache.get(roleID)
  
- if (!role) return throw new Error(`❌ Invalid role ID in \`$modifyRolePerms${inside}\``) 
+ if (!role) throw new Error(`❌ Invalid role ID in \`$modifyRolePerms${inside}\``) 
  
  let total = role.permissions.toArray()
  
@@ -26,7 +26,7 @@ module.exports = async d => {
  }
  const p = permissions[perm.slice(1)] 
  
- if (!p) return throw new Error(`❌ Invalid permission '${perm}' in \`$modifyRolePerms${inside}\``)
+ if (!p) throw new Error(`❌ Invalid permission '${perm}' in \`$modifyRolePerms${inside}\``)
  
  if (perm[0] === "+" && !total.includes(p)) {
  total.push(p) 
@@ -37,7 +37,7 @@ module.exports = async d => {
  
  const np = await role.setPermissions(total).catch(err => null) 
  
- if (!np) return throw new Error(`❌ Failed to set role permissions for ${role.name}!`)
+ if (!np) throw new Error(`❌ Failed to set role permissions for ${role.name}!`)
  
  return {
  code: code.replaceLast(`$modifyRolePerms${inside}`, "")

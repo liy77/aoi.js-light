@@ -4,7 +4,7 @@ module.exports = async d => {
 	const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
 
 	const [
 		roleID,
@@ -16,7 +16,7 @@ module.exports = async d => {
 
 	const role = d.message.guild.roles.cache.get(roleID)
 
-	if (!role) return throw new Error(`:x: Invalid role ID in \`$modifyRole${inside}\``)
+	if (!role) throw new Error(`:x: Invalid role ID in \`$modifyRole${inside}\``)
 
 	const ROLE = await role.edit({
 		name: name || role.name,
@@ -25,7 +25,7 @@ module.exports = async d => {
 		hoisted: hoisted ? hoisted === "yes" : undefined
 	}).catch(err => { })
 
-	if (!ROLE) return throw new Error(`:x: Failed to modify ${role.name}!`)
+	if (!ROLE) throw new Error(`:x: Failed to modify ${role.name}!`)
 
 	return {
 		code: code.replaceLast(`$modifyRole${inside}`, "")

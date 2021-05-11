@@ -10,7 +10,7 @@ module.exports = async (d) => {
   );
 
   if (!guild)
-    return throw new Error(`❌ Invalid guild ID in \`$serverAvailable${data.total}\``);
+    throw new Error(`❌ Invalid guild ID in \`$serverAvailable${data.total}\``);
 
   return {
     code: code.replaceLast(`$serverAvailable${data.total}`, guild.available),

@@ -5,7 +5,7 @@ module.exports = async (d) => {
   const inside = code.split("$editChannel")[r].after();
 
   if (!inside.splits.length)
-    return throw new Error(`:x: Invalid usage in $editChannel${inside.total}`);
+    throw new Error(`:x: Invalid usage in $editChannel${inside.total}`);
 
   const [
     channelID,
@@ -22,7 +22,7 @@ module.exports = async (d) => {
   const channel = d.message.guild.channels.cache.get(channelID);
 
   if (!channel)
-    return throw new Error(
+    throw new Error(
       `:x: Invalid channel given in \`$editChannel${inside.total}\``
     );
 
@@ -46,7 +46,7 @@ module.exports = async (d) => {
     );
   } catch (err) {
     console.error(err);
-    return throw new Error(
+    throw new Error(
       `:x: Failed to edit channel in \`$editChannel${inside.total}\``
     );
   }

@@ -7,7 +7,7 @@ const footer = (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [text, url] = inside.splits;
 

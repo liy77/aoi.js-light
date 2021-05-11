@@ -7,11 +7,11 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const option = Object.keys(roleOptions).find((opt) => opt === inside.inside);
 
-  if (!option) return throw new Error(`❌ Invalid option in \`$oldRole${inside}\``);
+  if (!option) throw new Error(`❌ Invalid option in \`$oldRole${inside}\``);
 
   const executor = roleOptions[option].split(";")[1];
 

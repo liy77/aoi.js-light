@@ -7,7 +7,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
  
     let [id, result] = inside.splits
     
@@ -37,7 +37,7 @@ module.exports = async d => {
     "timestamp",
     "acronym",
     "emojicount"
-].includes(result.toLowerCase())) return throw new Error(`:x: Invalid option in 2nd field of \`$guild${inside}\`.`)
+].includes(result.toLowerCase())) throw new Error(`:x: Invalid option in 2nd field of \`$guild${inside}\`.`)
 
 switch(result) {
     case "name": result = server.name;

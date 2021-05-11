@@ -11,7 +11,7 @@ module.exports = async (d) => {
     const channel = d.client.channels.cache.get(inside);
 
     if (!channel)
-      return throw new Error(`:x: Invalid channel ID in \`$channelType${after}\``);
+      throw new Error(`:x: Invalid channel ID in \`$channelType${after}\``);
 
     return {
       code: code.replaceLast(`$channelType${after}`, channel.type),

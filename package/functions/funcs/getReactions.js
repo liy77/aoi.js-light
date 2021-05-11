@@ -5,17 +5,17 @@ module.exports = async d => {
     
     const inside = code.split("$getReactions")[r].after()
 
-	if (!inside.inside) return throw new Error(`:x: Invalid usage in $getReactions${inside}`)
+	if (!inside.inside) throw new Error(`:x: Invalid usage in $getReactions${inside}`)
     
     const [channelID, messageID, reaction, options = "username"] = inside.splits
     
     const channel = d.client.channels.cache.get(channelID)
     
-    if (!channel) return throw new Error(`❌ Invalid channel ID in \`$getReactions${inside}\``)
+    if (!channel) throw new Error(`❌ Invalid channel ID in \`$getReactions${inside}\``)
         
     const msg = await channel.messages.fetch(messageID).catch(err => {})
     
-    if (!msg) return throw new Error(`❌ Invalid message ID in \`$getReactions${inside}\``)
+    if (!msg) throw new Error(`❌ Invalid message ID in \`$getReactions${inside}\``)
         
     const emoji = reaction.addBrackets().includes("<") ? reaction.addBrackets().split(":")[2].split(">")[0] : reaction 
         

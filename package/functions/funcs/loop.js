@@ -8,11 +8,11 @@ const loop = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
 
     const times = Number(inside.splits[0])
 
-    if (isNaN(times) || times < 1) return throw new Error(`:x: Invalid times number at \`$loop${inside}\``)
+    if (isNaN(times) || times < 1) throw new Error(`:x: Invalid times number at \`$loop${inside}\``)
 
     const commands = inside.splits.slice(1)
 
@@ -20,7 +20,7 @@ const loop = async d => {
         for (const command of commands) {
             const cmd = d.client.awaited_commands.find(c => c.name === command)
 
-            if (!cmd) return throw new Error(`:x: Invalid awaited command '${command}' in \`$loop${inside}\``)
+            if (!cmd) throw new Error(`:x: Invalid awaited command '${command}' in \`$loop${inside}\``)
 
             await interpreter(d.client, d.message, d.args, cmd, undefined, false)
         }

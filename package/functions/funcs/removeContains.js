@@ -4,13 +4,13 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
     
     const [channelID, amount, ...wordOrWords] = inside.splits
     
     const channel = d.client.channels.cache.get(channelID) 
     
-    if (!channel) return throw new Error(`❌ Invalid channel ID in \`$removeContains${inside}\``) 
+    if (!channel) throw new Error(`❌ Invalid channel ID in \`$removeContains${inside}\``) 
     
     const limit = Number(amount) 
     
@@ -18,11 +18,11 @@ module.exports = async d => {
         limit
     }).catch(err => null) 
     
-    if (!messages) return throw new Error(`❌ Failed to fetch messages `) 
+    if (!messages) throw new Error(`❌ Failed to fetch messages `) 
     
     const m = await channel.bulkDelete(messages.filter(m => Date.now() - m.createdTimestamp < require("ms")("14d") && wordOrWords.some(word => (m.embeds && require("../../handlers/resolveEmbed")(m.embeds).includes(word.addBrackets())) || (m.content && m.content.toLowerCase().includes(word.addBrackets())))).map(m => m.id)).catch(err => null) 
     
-    if (!m) return throw new Error(`❌ Failed to delete messages!`) 
+    if (!m) throw new Error(`❌ Failed to delete messages!`) 
     
     return {
         code: code.replaceLast(`$removeContains${inside}`, "")

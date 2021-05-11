@@ -9,7 +9,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   let fields = inside.splits;
 
@@ -23,15 +23,15 @@ module.exports = async (d) => {
     emote = await d.message.guild.emojis.cache.get(fields[0]);
     if (!emote && result.toLowerCase() === "isdeleted") result = true;
     else if (!emote)
-      return throw new Error(
+      throw new Error(
         `:x: Invalid emoji ID in 1st field of \`$emoji${inside}\``
       );
   } catch {
-    return throw new Error(`:x: Invalid emoji ID in 1st field of \`$emoji${inside}\``);
+    throw new Error(`:x: Invalid emoji ID in 1st field of \`$emoji${inside}\``);
   }
 
   if (!result)
-    return throw new Error(`:x: Missing option in 2nd field of \`$emoji${inside}\``);
+    throw new Error(`:x: Missing option in 2nd field of \`$emoji${inside}\``);
   if (
     ![
       "created",
@@ -46,7 +46,7 @@ module.exports = async (d) => {
       "url",
     ].includes(result.toLowerCase())
   )
-    return throw new Error(`:x: Invalid option in 2nd field of \`$emoji${inside}\``);
+    throw new Error(`:x: Invalid option in 2nd field of \`$emoji${inside}\``);
 
   switch (result) {
     case "id":

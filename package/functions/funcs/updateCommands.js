@@ -2,7 +2,7 @@ module.exports = async d => {
 	const code = d.command.code;
 
 	if (!d.client.bot.paths.length)
-		return throw new Error(
+		throw new Error(
 			`❌ Function <Bot>.loadCommands(path) was not used for the command handler.`
 		);
 

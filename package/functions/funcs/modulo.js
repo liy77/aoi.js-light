@@ -5,11 +5,11 @@ const modulo = async d => {
     const inside = d.unpack()
 	const err = d.inside(err)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
 
     const fields = inside.splits
 
-    if (fields.some(n => isNaN(Number(n)))) return throw new Error(`:x: Invalid number in \`$modulo${inside}\``)
+    if (fields.some(n => isNaN(Number(n)))) throw new Error(`:x: Invalid number in \`$modulo${inside}\``)
 
     const n = fields.reduce((x, y) => Number(x) % Number(y))
 

@@ -13,7 +13,7 @@ module.exports = async (d) => {
       .catch((err) => {});
 
     if (!member)
-      return throw new Error(`:x: Invalid user ID in \`$userPerms${inside}\``);
+      throw new Error(`:x: Invalid user ID in \`$userPerms${inside}\``);
 
     return {
       code: code.replaceLast(

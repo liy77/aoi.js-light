@@ -7,7 +7,7 @@ module.exports = async d => {
         const inside = d.unpack()
 		const err = d.inside(inside)
 
-		if (err) return throw new Error(err)
+		if (err) throw new Error(err)
     
         const fields = inside.splits
     
@@ -19,9 +19,9 @@ module.exports = async d => {
     
         const channel = d.message.guild.channels.cache.get(channelID)
     
-        if (!channel) return throw new Error(`:x: Invalid channel ID in \`$modifyChannelPerms${inside}\``)
+        if (!channel) throw new Error(`:x: Invalid channel ID in \`$modifyChannelPerms${inside}\``)
         
-        if (!perms.every(perm => Object.keys(keyPerms).includes(perm.slice(1)))) return throw new Error(`:x: Invalid permission in \`$modifyChannelPerms${inside}\``)
+        if (!perms.every(perm => Object.keys(keyPerms).includes(perm.slice(1)))) throw new Error(`:x: Invalid permission in \`$modifyChannelPerms${inside}\``)
     
         const allow = perms.filter(perm => perm[0] === "+").map(perm => keyPerms[perm.slice(1)])
     
@@ -58,16 +58,16 @@ module.exports = async d => {
         const ch = await channel.updateOverwrite(roleOrUser, permsObject).catch(err => err.message)
     
         if (typeof ch === "string") {
-            return throw new Error(`:x: Could not modify channel permissions! in \`$modifyChannelPerms${inside}\`\nError: ${ch}`)
+            throw new Error(`:x: Could not modify channel permissions! in \`$modifyChannelPerms${inside}\`\nError: ${ch}`)
         }
 
-        if (!ch) return throw new Error(`:x: Could not modify channel permissions! in \`$modifyChannelPerms${inside}\``)
+        if (!ch) throw new Error(`:x: Could not modify channel permissions! in \`$modifyChannelPerms${inside}\``)
     
     
         return {
             code: code.replaceLast(`$modifyChannelPerms${inside}`, "")
         }
     } catch (error) {
-        return throw new Error(`:x: ${error.message} in $modifyChannelPerms`)
+        throw new Error(`:x: ${error.message} in $modifyChannelPerms`)
     }
 }

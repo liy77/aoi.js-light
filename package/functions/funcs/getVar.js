@@ -4,12 +4,12 @@ const getVar = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const variable = inside.inside;
 
   if (d.client.variables[variable] === undefined)
-    return throw new Error(`:x: Variable '${variable}' not found!`);
+    throw new Error(`:x: Variable '${variable}' not found!`);
 
   let item = await d.client.db.get("main", variable);
 

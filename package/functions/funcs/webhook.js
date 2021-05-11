@@ -6,7 +6,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
  
     const fields = inside.splits
 
@@ -22,9 +22,9 @@ module.exports = async d => {
     
     let opt = fields[1]
 
-    if (!hook && (opt != "exists")) return throw new Error(`❌ Invalid webhookURL in 1st field of \`$webhook${inside}\``) 
+    if (!hook && (opt != "exists")) throw new Error(`❌ Invalid webhookURL in 1st field of \`$webhook${inside}\``) 
 
- if(!opt) return throw new Error(`:x: Missing option in 2nd field of \`$webhook${inside}\`.`)
+ if(!opt) throw new Error(`:x: Missing option in 2nd field of \`$webhook${inside}\`.`)
  if(![
     "avatar",
     "channelid",
@@ -36,7 +36,7 @@ module.exports = async d => {
     "type",
     "url",
     "exists"
-].includes(opt.toLowerCase())) return throw new Error(`:x: Invalid option in 2nd field of \`$webhook${inside}\`.`)
+].includes(opt.toLowerCase())) throw new Error(`:x: Invalid option in 2nd field of \`$webhook${inside}\`.`)
 
 switch (opt) {
     case "avatar": opt = `https://cdn.discordapp.com/avatars/${hook.id}/${hook.avatar}.png`

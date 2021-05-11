@@ -6,7 +6,7 @@ module.exports = async d => {
     if (inside.inside) {
         const user = await d.client.users.fetch(inside.inside).catch(err => {})
 
-        if (!user) return throw new Error(`:x: Invalid user ID in \`$userTag${inside}\``)
+        if (!user) throw new Error(`:x: Invalid user ID in \`$userTag${inside}\``)
 
         return {
             code: code.replaceLast(`$userTag${inside}`, user.tag.removeBrackets())

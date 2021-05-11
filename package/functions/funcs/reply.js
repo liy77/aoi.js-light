@@ -6,7 +6,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
     
     const [messageID, msg, mention = "yes"] = inside.splits
     

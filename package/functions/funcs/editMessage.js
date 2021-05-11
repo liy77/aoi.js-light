@@ -9,22 +9,22 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [messageID, msg, channelID = d.message.channel.id] = inside.splits;
 
   const channel = d.client.channels.cache.get(channelID);
 
   if (!channel)
-    return throw new Error(`❌ Invalid channel ID in \`$editMessage${inside}\``);
+    throw new Error(`❌ Invalid channel ID in \`$editMessage${inside}\``);
 
   const message = await channel.messages.fetch(messageID).catch((err) => {});
 
   if (!message)
-    return throw new Error(`❌ Invalid message ID in \`$editMessage${inside}\``);
+    throw new Error(`❌ Invalid message ID in \`$editMessage${inside}\``);
 
   if (message.author.id !== d.client.user.id)
-    return throw new Error(`❌ Unauthored message!`);
+    throw new Error(`❌ Unauthored message!`);
 
   const m = await embed(d, msg.addBrackets(), true);
 

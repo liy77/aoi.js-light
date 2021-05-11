@@ -6,7 +6,7 @@ module.exports = async d => {
     const inside = d.after()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
     
     let [guildID, commandID, name, description, ...opts] = inside.splits
     
@@ -46,7 +46,7 @@ module.exports = async d => {
         }
     }).catch(err => null) 
     }
-    if (!request) return throw new Error(`❌ Failed to modify slash command`)
+    if (!request) throw new Error(`❌ Failed to modify slash command`)
     return {
         code: code.replaceLast(`$modifySlashCommand${inside}`, "")
     }

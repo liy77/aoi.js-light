@@ -4,10 +4,10 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   if (d.client.variables[inside.inside] === undefined)
-    return throw new Error(
+    throw new Error(
       `:x: Invalid variable '${inside.inside}' in \`$resetGlobalUserVar${inside}\``
     );
 

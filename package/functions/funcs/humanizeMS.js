@@ -13,7 +13,7 @@ module.exports = d => {
   const after = d.unpack()
 	const err = d.inside(after)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
   let [
     ms,
     limit = "2",
@@ -21,7 +21,7 @@ module.exports = d => {
   ] = after.splits
   const array = new Array()
 
-  if (isNaN(new Number(ms))) return throw new Error("❌ First Field must be a Number at `$humanizeMS" + after.total + "`!")
+  if (isNaN(new Number(ms))) throw new Error("❌ First Field must be a Number at `$humanizeMS" + after.total + "`!")
   loop:
   for (const Duration of Object.keys(Durations).reverse()) {
     const Amount = BigInt(ms) / BigInt(Durations[Duration])

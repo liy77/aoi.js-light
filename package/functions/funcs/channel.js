@@ -8,7 +8,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   let [id, option] = inside.splits;
 
@@ -26,7 +26,7 @@ module.exports = async (d) => {
   }
 
   if (!option)
-    return throw new Error(`:x: Missing option in 2nd field of \`$channel${inside}\`.`);
+    throw new Error(`:x: Missing option in 2nd field of \`$channel${inside}\`.`);
   if (
     ![
       "created",
@@ -49,7 +49,7 @@ module.exports = async (d) => {
       "isdeletable",
     ].includes(option.toLowerCase())
   )
-    return throw new Error(`:x: Invalid option in 2nd field of \`$channel${inside}\`.`);
+    throw new Error(`:x: Invalid option in 2nd field of \`$channel${inside}\`.`);
 
   switch (option) {
     case "name":

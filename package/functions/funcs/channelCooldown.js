@@ -12,7 +12,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const fields = inside.splits;
 
@@ -21,7 +21,7 @@ module.exports = async (d) => {
   const errorMessage = fields.join(";");
 
   if (!ms(time))
-    return throw new Error(
+    throw new Error(
       `❌ Invalid time '${time}' in \`$channelCooldown${inside}\``
     );
 

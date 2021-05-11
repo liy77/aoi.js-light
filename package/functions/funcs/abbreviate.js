@@ -5,7 +5,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [num, dec = "1"] = inside.splits;
 
@@ -13,17 +13,17 @@ module.exports = async (d) => {
   const de = Number(dec);
 
   if (isNaN(n))
-    return throw new Error(`:x: Invalid number in \`$abbreviate${inside.total}\``);
+    throw new Error(`:x: Invalid number in \`$abbreviate${inside.total}\``);
 
   if (isNaN(de))
-    return throw new Error(`:x: Invalid decimal in \`$abbreviate${inside.total}\``);
+    throw new Error(`:x: Invalid decimal in \`$abbreviate${inside.total}\``);
 
   let a;
 
   try {
     a = abbreviate(n, de);
   } catch {
-    return throw new Error(
+    throw new Error(
       `:x: There's an error while abbreviating \`$abbreviate${inside.total}\``
     );
   }

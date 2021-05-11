@@ -9,7 +9,7 @@ module.exports = async d => {
 
 	const err = d.inside(inside)
 
-if (err) return throw new Error(err)
+if (err) throw new Error(err)
 
     
     const [name, guildID = d.message.guild.id] = inside.splits
@@ -20,7 +20,7 @@ if (err) return throw new Error(err)
         }
     }).catch(err => null) 
     
-    if (!commands) return throw new Error(`❌ Failed to fetch slash commands`) 
+    if (!commands) throw new Error(`❌ Failed to fetch slash commands`) 
     
     else commands = commands.data 
     

@@ -7,7 +7,7 @@ const image = d => {
   const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return throw new Error(err)
+	if (err) throw new Error(err)
   
   let [url, name] = inside.splits
   

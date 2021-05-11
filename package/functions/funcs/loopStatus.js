@@ -5,7 +5,7 @@ module.exports = async d => {
 	const inside = code.split('$loopStatus')[r].after()
 	const server = d.client.servers.get(d.message.guild.id)
 
-	if (!server) return throw new Error(':x: Nothing is being played!')
+	if (!server) throw new Error(':x: Nothing is being played!')
 
 	let status = 'none'
 

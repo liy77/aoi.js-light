@@ -11,7 +11,7 @@ module.exports = async (d) => {
     const guild = d.client.guilds.cache.get(inside);
 
     if (!guild)
-      return throw new Error(`:x: Invalid guild ID in \`$botleave${inside}\``);
+      throw new Error(`:x: Invalid guild ID in \`$botleave${inside}\``);
 
     await guild.leave();
 

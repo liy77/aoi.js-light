@@ -7,7 +7,7 @@ module.exports = async d => {
   
   const inside = code.split("$math")[r].after()
 
-	if (!inside.inside) return throw new Error(`:x: Invalid usage in $math${inside.total}`)
+	if (!inside.inside) throw new Error(`:x: Invalid usage in $math${inside.total}`)
 
 	let result
 	
@@ -16,11 +16,11 @@ module.exports = async d => {
 	try {
 	    const operation = inside.inside.match(OPERATORS).join("")
 	    
-	    if (inside.inside.replace(OPERATORS, "").length) return throw new Error(`❌ Invalid operation in \`$math${inside.total}\``)
+	    if (inside.inside.replace(OPERATORS, "").length) throw new Error(`❌ Invalid operation in \`$math${inside.total}\``)
 	    
   	result = eval(operation)
 	} catch {
-		return throw new Error(`:x: Failed to calculate in \`$math${inside.total}\``)
+		throw new Error(`:x: Failed to calculate in \`$math${inside.total}\``)
 	}
   
   return {

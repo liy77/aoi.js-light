@@ -14,7 +14,7 @@ module.exports = async (d) => {
       const cmd = d.client.awaited_commands.find((e) => e.name === command);
 
       if (!cmd)
-        return throw new Error(
+        throw new Error(
           `❌ Invalid awaited command ${command} in \`$forEachGuild${inside}\``
         );
 

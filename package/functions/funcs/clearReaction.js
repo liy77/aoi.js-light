@@ -7,24 +7,24 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return throw new Error(err);
+  if (err) throw new Error(err);
 
   const [channelID, messageID, userID, emojiOptions = "all"] = inside.splits;
 
   const channel = d.client.channels.cache.get(channelID);
 
   if (!channel)
-    return throw new Error(`❌ Invalid channel ID in \`$clearReaction${inside}\``);
+    throw new Error(`❌ Invalid channel ID in \`$clearReaction${inside}\``);
 
   const msg = await channel.messages.fetch(messageID).catch((err) => null);
 
   if (!msg)
-    return throw new Error(`❌ Invalid message ID in \`$clearReaction${inside}\``);
+    throw new Error(`❌ Invalid message ID in \`$clearReaction${inside}\``);
 
   const user = await d.client.users.fetch(userID).catch((err) => null);
 
   if (!user)
-    return throw new Error(`❌ Invalid user ID in \`$clearReaction${inside}\``);
+    throw new Error(`❌ Invalid user ID in \`$clearReaction${inside}\``);
 
   const emoji = emojiOptions.includes("<")
     ? emojiOptions.split(":")[2].split(">")[0]
