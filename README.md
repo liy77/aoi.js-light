@@ -32,8 +32,8 @@ It's swift and flexible using functions </br>
 const Aoijs = require("aoi.js-light")
 
 const bot = new Aoijs.Cache({
-    token: "",
-    prefix: "",
+    token: "TOKEN", //Discord Bot Token
+    prefix: "!", //Customizable
     cache: {
         Guilds: true,
         Channels: false,
