@@ -18,6 +18,23 @@
   "homepage": "https://github.com/L0R4/aoi.js-light#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "discord.js-light": "^3.5.11"
+    "danbot-hosting": "^0.1.6",
+    "dbd.db": "^1.4.5",
+    "dblapi.js": "^2.4.1",
+    "discord-paginator.js": "^1.0.2",
+    "discord.js-light": "^3.5.11",
+    "ffmpeg-static": "^4.3.0",
+    "fs": "*",
+    "moment": "^2.29.1",
+    "ms": "^2.1.2",
+    "ms-parser": "^1.0.5",
+    "parse-ms": "^3.0.0",
+    "prism-media": "^1.2.9",
+    "soundcloud-downloader": "^1.0.0",
+    "spotify-url-info": "^2.2.0",
+    "workerpool": "^6.1.4",
+    "ws": "^7.4.5",
+    "yt-search": "^2.8.0",
+    "ytdl-core": "^4.7.0"
   }
 }
