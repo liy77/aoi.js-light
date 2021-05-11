@@ -3,8 +3,8 @@
     <a href="https://dbd.js.org/invite"><img src="https://cdn.discordapp.com/attachments/804505461076131840/837194632148287509/Aoi.js_6_ver._2.png" alt="aoi.js" /></a>
   </p>
 
-# Aoi.JS
-[![NPM Downloads](https://img.shields.io/npm/dt/aoi.js.svg?maxAge=3600)](https://www.npmjs.com/package/aoi.js)
+# Aoi.JS-Light
+[![NPM Downloads](https://img.shields.io/npm/dt/aoi.js.svg?maxAge=3600)](https://www.npmjs.com/package/aoi.js-light)
 [![Discord Server](https://img.shields.io/discord/773352845738115102?color=7289da&logo=discord&logoColor=white)](https://dbd.js.org/invite)
 
 ## Table Of Contents
@@ -20,15 +20,15 @@
 
 
 ## About
-Aoi.JS is a package that aim to allows you to make your Discord Bots with Ease.
+Aoi.JS-Light is a lighter version of Aoi.JS, where you can disable unused caches by making your bot consume less ram.
 
-Aiming to be the easiest package to learn <br>
-It's swift and flexible using functions </br>
+Original package: [Aoi.JS](https://www.npmjs.com/package/aoi.js)
 
 ## Examples
 
 ### Setup
 ```js
+//This is light setup! (configurable cache)
 const Aoijs = require("aoi.js-light")
 
 const bot = new Aoijs.Cache({
@@ -55,6 +55,7 @@ code: `$ping Pong!` //Code
 #### Or
 
 ```js
+//This is normal setup! (with all cache)
 const Aoijs = require("aoi.js-light")
 
 const bot = new Aoijs.Bot({
@@ -143,3 +144,6 @@ Aoi.JS was made by [Aoi.JS Team](https://discord.gg/HMUfMXDQsV)
 
 ## Contributing
 Please read [Contributing](https://github.com/aoijs/aoi.js/blob/master/.github/CONTRIBUTING.md)
+
+## For light support dm lrd#2774
+Aoi.JS-Light was made by lrd#2774
