@@ -5,11 +5,11 @@ module.exports = d => {
   const inside = d.unpack()
   const err = d.inside(inside)
 
-  if (err) return d.error(err)
+  if (err) return throw new Error(err)
   
   const role = d.message.guild.roles.cache.find(r => r.name.toLowerCase() === inside.inside.toLowerCase().addBrackets())
   
-  if (!role) return d.error(`❌ Invalid role name in \`$roleID${inside}\``) 
+  if (!role) return throw new Error(`❌ Invalid role name in \`$roleID${inside}\``) 
   
   return {
     code: code.replaceLast(`$roleID${inside}`, role.id)

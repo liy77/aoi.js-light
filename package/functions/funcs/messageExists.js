@@ -4,13 +4,13 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
     
     const [channelID, messageID] = inside.splits
     
     const channel = d.client.channels.cache.get(channelID)
     
-    if (!channel) return d.error(`❌ Invalid channel ID in \`$messageExists${inside}\``)
+    if (!channel) return throw new Error(`❌ Invalid channel ID in \`$messageExists${inside}\``)
         
     const msg = await channel.messages.fetch(messageID).catch(err => null)
 

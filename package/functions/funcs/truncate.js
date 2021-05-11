@@ -4,11 +4,11 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const n = Number(inside.addBrackets())
 
-    if (isNaN(n)) return d.error(`:x: Invalid number in \`$truncate${inside}\``)
+    if (isNaN(n)) return throw new Error(`:x: Invalid number in \`$truncate${inside}\``)
 
     return {
         code: code.replaceLast(`$truncate${inside}`, Math.trunc(n))

@@ -3,15 +3,15 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [variable, messageID = d.message.id] = inside.splits;
 
   if (d.client.variables[variable] === undefined)
-    return d.error(`:x: Variable '${variable}' not found`);
+    return throw new Error(`:x: Variable '${variable}' not found`);
 
   if (!messageID)
-    return d.error(
+    return throw new Error(
       `:x: messageID field not provided in \`$deleteMessageVr${inside}\``
     );
 

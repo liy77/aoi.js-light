@@ -7,20 +7,20 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [channelID, messageID, option = "description"] = inside.splits;
 
   const channel = d.message.guild.channels.cache.get(channelID);
 
   if (!channel)
-    return d.error(`:x: Invalid channel ID in \`$getEmbed${inside}\``);
+    return throw new Error(`:x: Invalid channel ID in \`$getEmbed${inside}\``);
 
   const msg = await channel.messages.fetch(messageID).catch((err) => {});
 
-  if (!msg) return d.error(`:x: Invalid message ID in \`$getEmbed${inside}\``);
+  if (!msg) return throw new Error(`:x: Invalid message ID in \`$getEmbed${inside}\``);
 
-  if (!msg.embeds[0]) return d.error(`:x: Message contains no embeds`);
+  if (!msg.embeds[0]) return throw new Error(`:x: Message contains no embeds`);
 
   const options = {
     title: "title",
@@ -33,7 +33,7 @@ module.exports = async (d) => {
     thumbnail: "thumbnail ? thumbnail.url : undefined",
   }[option.toLowerCase()];
 
-  //if (!options) return d.error(`:x: Invalid options in \`$getEmbed[${inside}]\``)
+  //if (!options) return throw new Error(`:x: Invalid options in \`$getEmbed[${inside}]\``)
 
   const opt = eval(
     options

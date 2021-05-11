@@ -27,7 +27,7 @@ reaction,
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const fields = inside.splits;
 
@@ -42,7 +42,7 @@ reaction,
   try {
     var evaled = await eval(CODE.addBrackets());
   } catch (error) {
-    d.error(error.message + ` in \`$djsEval${inside}\``);
+    throw new Error(error.message + ` in \`$djsEval${inside}\``);
   }
 
   return {

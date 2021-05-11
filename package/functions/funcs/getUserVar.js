@@ -5,13 +5,13 @@ const getUserVar = async d => {
 	const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
 	let [variable, userID = d.message.author.id, guildID] = inside.splits
 	
 	if (!guildID) guildID = d.message.guild ? d.message.guild.id : "" 
 	
-	if (d.client.variables[variable] === undefined) return d.error(`❌ Variable '${variable}' not found!`)
+	if (d.client.variables[variable] === undefined) return throw new Error(`❌ Variable '${variable}' not found!`)
 
 	let item = await d.client.db.get("main", `${variable}_${guildID}_${userID}`)
 

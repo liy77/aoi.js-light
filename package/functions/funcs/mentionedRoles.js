@@ -5,11 +5,11 @@ const mentionedRoles = d => {
   const inside = d.unpack()
   const err = d.inside(inside)
 
-  if (err) return d.error(err)
+  if (err) return throw new Error(err)
   
   const mention = inside.inside
   
-  if (isNaN(mention)) return d.error(`❌ Invalid mention number in \`$mentionedRoles${inside}\``)
+  if (isNaN(mention)) return throw new Error(`❌ Invalid mention number in \`$mentionedRoles${inside}\``)
   
   const role = d.message.mentions.roles.array()[Number(mention) - 1]
   

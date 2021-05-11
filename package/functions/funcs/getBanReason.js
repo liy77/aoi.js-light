@@ -7,18 +7,18 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [userID, guildID = d.message.guild.id] = inside.splits;
 
   const guild = d.client.guilds.cache.get(guildID);
 
   if (!guild)
-    return d.error(`❌ Invalid guild ID in \`$getBanReason${inside}\``);
+    return throw new Error(`❌ Invalid guild ID in \`$getBanReason${inside}\``);
 
   const ban = await guild.fetchBan(userID).catch((err) => null);
 
-  if (!ban) return d.error(`❌ Unknown ban in \`$getBanReason${inside}\``);
+  if (!ban) return throw new Error(`❌ Unknown ban in \`$getBanReason${inside}\``);
 
   return {
     code: code.replaceLast(

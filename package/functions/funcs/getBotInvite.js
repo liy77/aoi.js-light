@@ -34,7 +34,7 @@ module.exports = async d => {
     }
 
     if (error) {
-      return d.error(error)
+      return throw new Error(error)
     }
 
 

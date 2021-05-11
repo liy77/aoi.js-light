@@ -4,13 +4,13 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const guild = await d.message.guild.edit({
         icon: inside.addBrackets()
     }).catch(err => {})
 
-    if (!guild) return d.error(`:x: Failed to edit Guild Icon!`)
+    if (!guild) return throw new Error(`:x: Failed to edit Guild Icon!`)
 
     return {
         code: code.replaceLast(`$setGuildIcon${inside}`, "")

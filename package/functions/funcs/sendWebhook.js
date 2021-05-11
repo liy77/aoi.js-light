@@ -9,7 +9,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
     
     const [id, token, msg, ...options ] = inside.splits
     
@@ -31,7 +31,7 @@ module.exports = async d => {
         embeds: embeds.length ? embeds : undefined 
     }).catch(err => null)
     
-    if (!webhook) return d.error(`:x: Failed to send message with webhook`)
+    if (!webhook) return throw new Error(`:x: Failed to send message with webhook`)
     
     return {
         code:code.replaceLast(`$sendWebhook${inside}`, "")

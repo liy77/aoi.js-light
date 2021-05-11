@@ -16,14 +16,14 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   let [name, type = "text", returnID = "no", parentID] = inside.splits;
 
   type = type.toLowerCase();
 
   if (!types.includes(type))
-    return d.error(
+    return throw new Error(
       `:x: Invalid channel type '${type}' in \`$createChannel${inside}\``
     );
 
@@ -47,7 +47,7 @@ module.exports = async (d) => {
   }
 
   if (!channel)
-    return d.error(`:x: Could not create channel '${name}:${type}'!`);
+    return throw new Error(`:x: Could not create channel '${name}:${type}'!`);
 
   return {
     code: code.replaceLast(

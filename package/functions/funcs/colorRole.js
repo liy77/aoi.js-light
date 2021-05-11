@@ -7,18 +7,18 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [roleID, color] = inside.splits;
 
   const role = d.message.guild.roles.cache.get(roleID);
 
-  if (!role) return d.error(`:x: Invalid role ID in \`$colorRole${inside}\``);
+  if (!role) return throw new Error(`:x: Invalid role ID in \`$colorRole${inside}\``);
 
   const re = await role.setColor(color).catch((err) => {});
 
   if (!re)
-    return d.error(`:x: Failed to change ${role.name} color to ${color}!`);
+    return throw new Error(`:x: Failed to change ${role.name} color to ${color}!`);
 
   return {
     code: code.replaceLast(`$colorRole${inside}`, ""),

@@ -6,7 +6,7 @@ module.exports = async d => {
  const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
  
  const [channelID, userID, ...perms] = inside.splits 
  
@@ -14,11 +14,11 @@ module.exports = async d => {
  
  const user = await d.client.users.fetch(userID).catch(err => null) 
  
- if (!channel || !user) return d.error(`❌ Invalid channel or user ID in \`$hasPermsInChannel${inside}\``) 
+ if (!channel || !user) return throw new Error(`❌ Invalid channel or user ID in \`$hasPermsInChannel${inside}\``) 
  
  const pms = perms.map(key => permissions[key]) 
  
- if (pms.includes(undefined)) return d.error(`❌ Invalid permissions in \`$hasPermsInChannel${inside}\``) 
+ if (pms.includes(undefined)) return throw new Error(`❌ Invalid permissions in \`$hasPermsInChannel${inside}\``) 
  
  const upms = channel.permissionsFor(userID) 
  

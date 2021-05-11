@@ -14,17 +14,17 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [option, id = d.message.author.id] = inside.splits;
 
   if (!userInfo[option])
-    return d.error(`:x: Invalid option in \`$userInfo${inside.total}\``);
+    return throw new Error(`:x: Invalid option in \`$userInfo${inside.total}\``);
 
   const user = await d.client.users.fetch(id).catch((err) => {});
 
   if (!user)
-    return d.error(`:x: Invalid userID in \`$userInfo${inside.total}\``);
+    return throw new Error(`:x: Invalid userID in \`$userInfo${inside.total}\``);
 
   const data =
     (await d.client.db

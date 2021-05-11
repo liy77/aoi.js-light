@@ -11,7 +11,7 @@ module.exports = async (d) => {
     let channel = d.message.guild.channels.cache.get(channelID);
 
     if (!channel)
-      return d.error(`:x: Invalid channel ID in \`$cloneChannel${after}\``);
+      return throw new Error(`:x: Invalid channel ID in \`$cloneChannel${after}\``);
 
     const data = {
       name: channel.name,
@@ -20,7 +20,7 @@ module.exports = async (d) => {
 
     channel = await channel.clone().catch((Err) => {});
 
-    if (!channel) return d.error(`:x: Failed to clone channel`);
+    if (!channel) return throw new Error(`:x: Failed to clone channel`);
 
     await channel.setName(data.name);
     await channel.setPosition(data.position);
@@ -39,7 +39,7 @@ module.exports = async (d) => {
 
     const channel = await d.message.channel.clone().catch((Err) => {});
 
-    if (!channel) return d.error(`:x: Failed to clone channel`);
+    if (!channel) return throw new Error(`:x: Failed to clone channel`);
 
     await channel.setName(data.name);
     await channel.setPosition(data.position);

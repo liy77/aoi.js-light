@@ -13,7 +13,7 @@ module.exports = (d) => {
     const guild = d.client.guilds.cache.get(guildID || d.message.guild.id);
 
     if (!guild)
-      return d.error(`:x: Invalid guild ID in \`$membersCount${inside}\``);
+      return throw new Error(`:x: Invalid guild ID in \`$membersCount${inside}\``);
 
     return {
       code: code.replaceLast(

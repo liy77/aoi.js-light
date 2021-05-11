@@ -6,7 +6,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
     
     const fields = inside.splits
     
@@ -14,11 +14,11 @@ module.exports = async d => {
     
     const member = await d.message.guild.members.fetch(userID).catch(err => null)
         
-    if (!member) return d.error(`❌ Invalid user ID in \`$hasAnyPerm${inside}\``) 
+    if (!member) return throw new Error(`❌ Invalid user ID in \`$hasAnyPerm${inside}\``) 
     
     const perms = fields.map(p => permissions[p])
     
-    if (perms.includes(undefined)) return d.error(`Invalid permission given in \`$hasAnyPerm${inside}\``) 
+    if (perms.includes(undefined)) return throw new Error(`Invalid permission given in \`$hasAnyPerm${inside}\``) 
     
     return {
         code: code.replaceLast(`$hasAnyPerm${inside}`, member.permissions.any(perms))

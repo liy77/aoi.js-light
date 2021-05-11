@@ -49,6 +49,6 @@ module.exports = async (d) => {
       } 
     } 
   } catch (error) {
-    return d.error(`:x: ${error.message}`)
+    return throw new Error(`:x: ${error.message}`)
   }
 } 

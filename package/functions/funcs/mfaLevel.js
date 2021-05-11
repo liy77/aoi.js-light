@@ -5,7 +5,7 @@ module.exports = async (d) => {
   if (!d.inside(inside)) {
     const guild = d.client.guilds.cache.get(inside.inside);
 
-    if (!guild) return d.error(`:x: Invalid guildID in \`$mfaLevel${inside}\``);
+    if (!guild) return throw new Error(`:x: Invalid guildID in \`$mfaLevel${inside}\``);
 
     return {
       code: code.replaceLast(`$mfaLevel${inside}`, guild.mfaLevel === 1),

@@ -12,7 +12,7 @@ const dm = async (d) => {
 
     user = await d.client.users.cache.get(inside);
 
-    if (!user) return d.error(`❌ Invalid user ID in \`$dm${after}\``);
+    if (!user) return throw new Error(`❌ Invalid user ID in \`$dm${after}\``);
 
     code = code.replaceLast(`$dm${after}`, "");
   } else {

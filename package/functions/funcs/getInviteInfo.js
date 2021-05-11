@@ -5,17 +5,17 @@ module.exports = async d => {
     
     const inside = code.split("$getInviteInfo")[r].after()
 
-	if (!inside.inside) return d.error(`:x: Invalid usage in $getInviteInfo${inside}`)
+	if (!inside.inside) return throw new Error(`:x: Invalid usage in $getInviteInfo${inside}`)
     
     const [c, option] = inside.splits
     
     const invites = await d.message.guild.fetchInvites().catch(err => null) 
     
-    if (!invites) return d.error(`❌ Failed to fetch invites`)
+    if (!invites) return throw new Error(`❌ Failed to fetch invites`)
     
     const invite = invites.find(e => e.url === c || e.code === c) 
     
-    if (!invite) return d.error(`❌ Invalid invite code in \`$getInviteInfo${inside}\``) 
+    if (!invite) return throw new Error(`❌ Invalid invite code in \`$getInviteInfo${inside}\``) 
     
     const opt = {
         guildID: invite.guild.id, 

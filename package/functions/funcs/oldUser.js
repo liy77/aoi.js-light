@@ -6,11 +6,11 @@ module.exports = async d => {
     const inside = d.unpack() 
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
     
     const option = Object.keys(userOptions).find(opt => opt === inside.inside) 
     
-    if (!option) return d.error(`❌ Invalid option in \`$oldUser${inside}\``) 
+    if (!option) return throw new Error(`❌ Invalid option in \`$oldUser${inside}\``) 
     
     const executor = userOptions[option].split(";")[1] 
     

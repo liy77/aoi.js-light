@@ -7,15 +7,15 @@ const seek = async d => {
 	const server = d.client.servers.get(d.message.guild.id)
 
 	if (!server || !server.connection.dispatcher) {
-		return d.error(":x: Nothing is being played!")
+		return throw new Error(":x: Nothing is being played!")
 	}
 
 	if (!inside.inside) {
-		return d.error(`:x: Command \`$seekTo\` is invalid`)
+		return throw new Error(`:x: Command \`$seekTo\` is invalid`)
 	}
 
 	if (isNaN(parseInt(inside.inside))) {
-		return d.error(`:x: Field \`${inside.inside}\` is not a Number in \`$seekTo${inside.total}\``)
+		return throw new Error(`:x: Field \`${inside.inside}\` is not a Number in \`$seekTo${inside.total}\``)
 	}
 
 	if (server.songs[0].duration().split(' ')[0] == 0) {

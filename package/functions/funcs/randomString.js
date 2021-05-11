@@ -6,11 +6,11 @@ module.exports= async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const length = Number(inside.inside)
 
-    if (!length) return d.error(`:x: Invalid number in \`$randomString${inside}\``)
+    if (!length) return throw new Error(`:x: Invalid number in \`$randomString${inside}\``)
     
     let result = []
     

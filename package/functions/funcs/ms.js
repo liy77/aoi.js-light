@@ -6,13 +6,13 @@ module.exports = async (d) => {
   const code = d.command.code;
   const inside = d.unpack();
   const err = d.inside(inside);
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
   let time = -1;
   try{
   time = ms(inside.inside);
   }
   catch{
-  return d.error(':x: Wrong ms/duration provided')
+  return throw new Error(':x: Wrong ms/duration provided')
   }
 
   return {

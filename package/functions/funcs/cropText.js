@@ -5,13 +5,13 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   let [text, limit, charToSplit = "", append = ""] = inside.splits;
 
   limit = Number(limit);
 
-  if (!limit) return d.error(`:x: Invalid number in \`$cropText${inside}\``);
+  if (!limit) return throw new Error(`:x: Invalid number in \`$cropText${inside}\``);
 
   let texts;
 

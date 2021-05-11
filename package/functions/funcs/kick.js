@@ -9,7 +9,7 @@ module.exports = async d => {
   const inside = d.unpack()
   const err = d.inside(inside)
 
-  if (err) return d.error(err)
+  if (err) return throw new Error(err)
   
   const [
     userID,
@@ -18,11 +18,11 @@ module.exports = async d => {
   
   const member = await d.message.guild.members.fetch(userID).catch(err => null)
   
-  if (!member || typeof member.kick === "undefined") return d.error(`:x: Invalid user ID in \`$kick${inside}\``)
+  if (!member || typeof member.kick === "undefined") return throw new Error(`:x: Invalid user ID in \`$kick${inside}\``)
   
   const m = await member.kick(reason).catch(err => {})
   
-  if (!m) return d.error(`:x: Failed to kick ${member.user.username}!`)
+  if (!m) return throw new Error(`:x: Failed to kick ${member.user.username}!`)
   
   return {
     code: code.replaceLast(`$kick${inside}`, "")

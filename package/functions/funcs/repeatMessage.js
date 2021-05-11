@@ -4,7 +4,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const [
         number,
@@ -13,7 +13,7 @@ module.exports = async d => {
 
     const n = Number(number)
 
-    if (isNaN(n)) return d.error(`:x: Invalid number in \`$repeatMessage${inside}\``)
+    if (isNaN(n)) return throw new Error(`:x: Invalid number in \`$repeatMessage${inside}\``)
 
     return{
         code: code.replaceLast(`$repeatMessage${inside}`, text.repeat(n))

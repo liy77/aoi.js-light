@@ -8,7 +8,7 @@ module.exports = async d => {
 
     const err = d.inside(inside) 
 
-    if(err) return d.error(err)
+    if(err) return throw new Error(err)
 
  //Yes its Me Ayaka#5057 with dumb codes
 
@@ -21,8 +21,8 @@ module.exports = async d => {
     fs.renameSync(oldfile,newfile) 
 
        } else {
-if(!fs.existsSync(oldfile)) return d.error(`Couldn't Found the ${oldfile} file`) 
-if(fs.existsSync(newfile)) return d.error(`File with name \`${newfile}\` already exist`)
+if(!fs.existsSync(oldfile)) return throw new Error(`Couldn't Found the ${oldfile} file`) 
+if(fs.existsSync(newfile)) return throw new Error(`File with name \`${newfile}\` already exist`)
 
 
            }

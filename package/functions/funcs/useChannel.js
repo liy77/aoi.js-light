@@ -7,12 +7,12 @@ const useChannel = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   let channel = d.client.channels.cache.get(inside.inside);
 
   if (!channel)
-    return d.error(`❌ Invalid channel ID in \`$useChannel${inside}\``);
+    return throw new Error(`❌ Invalid channel ID in \`$useChannel${inside}\``);
 
   return {
     channel: channel,

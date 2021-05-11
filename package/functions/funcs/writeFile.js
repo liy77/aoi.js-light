@@ -10,7 +10,7 @@ module.exports = async (d) => {
    
    const err = d.inside(inside) 
    
-   if(err) return d.error(err) 
+   if(err) return throw new Error(err) 
    
    
    
@@ -18,7 +18,7 @@ module.exports = async (d) => {
    
    
    
-   if(!data || !file ) return d.error(`Invalid Fields in $writeFile${inside}`)
+   if(!data || !file ) return throw new Error(`Invalid Fields in $writeFile${inside}`)
    
    try{
    

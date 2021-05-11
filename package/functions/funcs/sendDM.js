@@ -6,7 +6,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     let [
         userID,
@@ -17,7 +17,7 @@ module.exports = async d => {
     
     const user = await d.client.users.fetch(userID).catch(err => {})
 
-    if (!user) return d.error(`:x: Invalid user ID in \`$sendDM${inside}\``)
+    if (!user) return throw new Error(`:x: Invalid user ID in \`$sendDM${inside}\``)
 
     const options = await embed(d, msg, undefined, user)
     

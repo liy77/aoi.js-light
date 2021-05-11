@@ -38,7 +38,7 @@ module.exports = (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [r = "0", g = "", b = "", toHex = "yes", type = "rgb"] = inside.splits;
   const rgb = BASIC_COLORS[r.toUpperCase()]
@@ -55,9 +55,9 @@ module.exports = (d) => {
     check(rgb[2], inside),
   ];
 
-  if (arr[0]) return d.error(arr[0]);
-  if (arr[1]) return d.error(arr[1]);
-  if (arr[2]) return d.error(arr[2]);
+  if (arr[0]) return throw new Error(arr[0]);
+  if (arr[1]) return throw new Error(arr[1]);
+  if (arr[2]) return throw new Error(arr[2]);
 
   let n = resolveColor(...rgb);
 

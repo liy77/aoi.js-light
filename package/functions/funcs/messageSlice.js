@@ -4,7 +4,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const [
         from, 
@@ -13,7 +13,7 @@ module.exports = async d => {
 
     const x = Number(from), y = Number(to)
 
-    if (!x || !y) return d.error(`:x: Invalid number in \`$messageSlice${inside}\``)
+    if (!x || !y) return throw new Error(`:x: Invalid number in \`$messageSlice${inside}\``)
 
     return {
         code: code.replaceLast(`$messageSlice${inside}`, d.args.slice(x, y + 1).join(" ").deleteBrackets())

@@ -10,7 +10,7 @@ module.exports = async (d) => {
 
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
  const [file , size] = inside.splits
 
@@ -18,7 +18,7 @@ let options = ["b","kb","mb","gb"]
 
  
 
- if(size=== undefined) return d.error(`No option given in $filesize${inside}`)
+ if(size=== undefined) return throw new Error(`No option given in $filesize${inside}`)
 let result;
 try{
 
@@ -52,7 +52,7 @@ try{
 
            default :
 
-          result = d.error(`❌ invalid size in $filesize${inside}`)
+          result = throw new Error(`❌ invalid size in $filesize${inside}`)
 
            ;
 
@@ -62,7 +62,7 @@ try{
 
     catch(e) {
 
-        d.error(`no file like ${file} exist`)}
+        throw new Error(`no file like ${file} exist`)}
 
     
 

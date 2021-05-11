@@ -4,7 +4,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const userID = inside.splits[0]
 
@@ -14,11 +14,11 @@ module.exports = async d => {
     
     const guild = d.client.guilds.cache.get(guildID) 
     
-    if (!guild) return d.error(`❌ Invalid guild ID in \`$hasRole${inside}\``) 
+    if (!guild) return throw new Error(`❌ Invalid guild ID in \`$hasRole${inside}\``) 
     
     const member = await guild.members.cache.get(userID)
 
-    if (!member) return d.error(`❌ Invalid user ID in \`$hasRole${inside}\``)
+    if (!member) return throw new Error(`❌ Invalid user ID in \`$hasRole${inside}\``)
 
     return {
         code: code.replaceLast(`$hasRole${inside}`, member.roles.cache.has(roleID))

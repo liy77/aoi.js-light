@@ -6,7 +6,7 @@ module.exports = async d => {
 
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     let [
 
@@ -19,7 +19,7 @@ module.exports = async d => {
     
 if(!msg){
 
-d.error(`No Text Was Provided In $sendTTS[${inside.splits.join(";")}]`)
+throw new Error(`No Text Was Provided In $sendTTS[${inside.splits.join(";")}]`)
 
 }
     

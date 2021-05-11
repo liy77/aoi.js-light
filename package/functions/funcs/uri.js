@@ -2,9 +2,9 @@ module.exports = async (d) => {
   const code = d.command.code;
   const inside = d.unpack();
   const err = d.inside(inside);
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
   let [type,text=""] = inside.splits; 
-  if(!type) return d.error(':x: Pls provide a Type(encode/decode)')
+  if(!type) return throw new Error(':x: Pls provide a Type(encode/decode)')
   else if(type=="encode"){
   text=encodeURIComponent(text);
   }
@@ -12,7 +12,7 @@ module.exports = async (d) => {
   text=decodeURIComponent(text);
   }
   else {
-  return d.error(':x: Pls provide a Type(encode/decode)');
+  return throw new Error(':x: Pls provide a Type(encode/decode)');
   }
   return {
     code: code.replaceLast(`$uri${inside}`,text),

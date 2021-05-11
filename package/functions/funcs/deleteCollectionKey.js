@@ -7,14 +7,14 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [cname, key] = inside.splits;
 
   const c = d.client.collections[cname.addBrackets()];
 
   if (!c)
-    return d.error(
+    return throw new Error(
       `❌ Invalid collection name in \`$deleteCollectionKey${inside}\``
     );
 

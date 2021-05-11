@@ -9,7 +9,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [guildID, option] = inside.splits;
 
@@ -47,7 +47,7 @@ module.exports = async (d) => {
     )
     .catch((err) => null);
 }
-  if (!commands) return d.error(`:x: Failed to fetch guild commands`);
+  if (!commands) return throw new Error(`:x: Failed to fetch guild commands`);
   else commands = commands.data;
 
   const command = commands.find(
@@ -55,7 +55,7 @@ module.exports = async (d) => {
   );
 
   if (!command)
-    return d.error(`❌ Could not find any command with name/id ${option}`);
+    return throw new Error(`❌ Could not find any command with name/id ${option}`);
 
   const request = axios
     .delete(
@@ -71,7 +71,7 @@ module.exports = async (d) => {
     .catch((err) => null);
 
   if (!request)
-    return d.error(`❌ Failed to delete slash command ${command.name}`);
+    return throw new Error(`❌ Failed to delete slash command ${command.name}`);
 
   return {
     code: code.replaceLast(`$deleteSlashCommand${inside}`, ""),

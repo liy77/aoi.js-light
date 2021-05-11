@@ -5,11 +5,11 @@ const mentioned = d => {
   const inside = d.unpack()
   const err = d.inside(inside)
 
-  if (err) return d.error(err)
+  if (err) return throw new Error(err)
 
   const [ mention, returnUser = "no" ] = inside.splits
   
-  if (isNaN(mention)) return d.error(`❌ Invalid mention number in \`$mentioned${inside}\``)
+  if (isNaN(mention)) return throw new Error(`❌ Invalid mention number in \`$mentioned${inside}\``)
   
   const user = d.message.mentions.users.array()[Number(mention) - 1]
   

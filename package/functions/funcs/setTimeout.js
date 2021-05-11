@@ -8,15 +8,15 @@ module.exports = async d => {
  const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
  
  const [duration, timeoutData, pulse] = inside.splits 
  
  const time = ms(duration) 
  
- if (!time) return d.error(`❌ Invalid duration for the timeout in \`$setTimeout${inside}\``) 
+ if (!time) return throw new Error(`❌ Invalid duration for the timeout in \`$setTimeout${inside}\``) 
  
- if (pulse && !ms(pulse)) return d.error(`❌ Invalid timeout heartbeat in \`$setTimeout${inside}\``) 
+ if (pulse && !ms(pulse)) return throw new Error(`❌ Invalid timeout heartbeat in \`$setTimeout${inside}\``) 
  
  const max = ms("21d") 
  

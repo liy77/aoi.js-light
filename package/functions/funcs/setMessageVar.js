@@ -5,11 +5,11 @@ const setMessageVar = async d => {
  const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
  const [ variable, value, messageID = d.message.id ] = inside.splits
 
- if (d.client.variables[variable] === undefined) return d.error(`❌ Variable '${variable}' not found`)
+ if (d.client.variables[variable] === undefined) return throw new Error(`❌ Variable '${variable}' not found`)
 
  
  d.client.db.set("main", `${variable}_${messageID}`, value)

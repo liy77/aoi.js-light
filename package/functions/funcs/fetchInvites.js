@@ -7,14 +7,14 @@ module.exports = async (d) => {
 
   const invites = await d.message.guild.fetchInvites().catch((err) => null);
 
-  if (!invites) return d.error(`❌ Could not fetch invites`);
+  if (!invites) return throw new Error(`❌ Could not fetch invites`);
 
   for (const invite of invites.array()) {
     for (const command of inside.splits) {
       const cmd = d.client.awaited_commands.find((c) => c.name === command);
 
       if (!cmd)
-        return d.error(
+        return throw new Error(
           `❌ Invalid command ${command} in \`$fetchInvites${inside}\``
         );
 

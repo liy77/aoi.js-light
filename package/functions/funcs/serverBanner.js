@@ -12,7 +12,7 @@ module.exports = async d => {
 
         const guild = d.client.guilds.cache.get(guildID)
 
-        if (!guild) return d.error(`:x: Invalid guild ID in \`$serverBanner${inside}\``)
+        if (!guild) return throw new Error(`:x: Invalid guild ID in \`$serverBanner${inside}\``)
 
         return {
             code: code.replaceLast(`$serverBanner${inside}`, guild.bannerURL({

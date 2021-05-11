@@ -4,7 +4,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const options = [
         roleID,
@@ -20,7 +20,7 @@ module.exports = async d => {
 
     const role = d.message.guild.roles.cache.get(roleID)
 
-    if (!role) return d.error(`:x: Invalid role ID in \`$usersWithRole${inside}\``)
+    if (!role) return throw new Error(`:x: Invalid role ID in \`$usersWithRole${inside}\``)
 
     return {
         code: code.replaceLast(`$usersWithRole${inside}`, role.members.map(m => m.user.tag).join(separator).removeBrackets())

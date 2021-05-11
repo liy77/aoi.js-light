@@ -5,7 +5,7 @@ module.exports  =async d => {
 
     const inside = code.split("$getMessage")[r].after()
 
-	if (!inside.inside) return d.error(`:x: Invalid usage in $getMessage${inside}`)
+	if (!inside.inside) return throw new Error(`:x: Invalid usage in $getMessage${inside}`)
 
     const [
         channelID,
@@ -19,15 +19,15 @@ module.exports  =async d => {
         userID: "author.id"
     }[option]
     
-    if (!options) return d.error(`:x: Invalid option in \`$getMessage${inside}\``)
+    if (!options) return throw new Error(`:x: Invalid option in \`$getMessage${inside}\``)
 
     const channel = d.client.channels.cache.get(channelID)
 
-    if (!channel) return d.error(`:x: Invalid channel ID in \`$getMessage${inside}\``)
+    if (!channel) return throw new Error(`:x: Invalid channel ID in \`$getMessage${inside}\``)
 
     const msg = await channel.messages.fetch(messageID).catch(Err => {})
 
-    if (!msg) return d.error(`:x: Invalid message ID in \`$getMessage${inside}\``)
+    if (!msg) return throw new Error(`:x: Invalid message ID in \`$getMessage${inside}\``)
 
     return {
         code: code.replaceLast(`$getMessage${inside}`, eval(`msg.${options}`).deleteBrackets())

@@ -9,7 +9,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [name, color, mentionable, hoisted, position, ...perms] = inside.splits;
 
@@ -30,7 +30,7 @@ module.exports = async (d) => {
     })
     .catch((err) => {});
 
-  if (!role) return d.error(`:x: Failed to create role!`);
+  if (!role) return throw new Error(`:x: Failed to create role!`);
 
   return {
     code: code.replaceLast(`$createRole${inside}`, ""),

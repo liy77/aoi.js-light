@@ -5,7 +5,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
     
     const fields = inside.splits
     let fie = fields
@@ -27,7 +27,7 @@ module.exports = async d => {
     
     if (d.data.interaction) {
         const msg = await d.data.interaction.reply(m.message, embeds,type) 
-        //if (! msg) return d.error(`❌ Failed to reply to slash command!`
+        //if (! msg) return throw new Error(`❌ Failed to reply to slash command!`
     }
     
     return {

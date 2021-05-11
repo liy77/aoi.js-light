@@ -5,7 +5,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     let [
         userID = new String(),
@@ -18,7 +18,7 @@ module.exports = async d => {
         if (bans) {
             const ban = bans.find(u => u.user.username === userID || u.user.tag === userID) 
             
-            if (!ban) return d.error(`❌ Invalid username in \`$unban${inside}\``)
+            if (!ban) return throw new Error(`❌ Invalid username in \`$unban${inside}\``)
             
             userID = ban.user.id 
         }
@@ -26,7 +26,7 @@ module.exports = async d => {
     
     const user = await d.message.guild.members.unban(userID, reason).catch(err => null)
 
-    if (!user) return d.error(`:x: Failed to unban user!`)
+    if (!user) return throw new Error(`:x: Failed to unban user!`)
 
     return {
         code: code.replaceLast(`$unban${inside}`, "")

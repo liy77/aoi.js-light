@@ -7,14 +7,14 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [cname, value, accurate = "yes"] = inside.splits;
 
   const collection = d.client.collections[cname.addBrackets()];
 
   if (!collection)
-    return d.error(
+    return throw new Error(
       `❌ Invalid collection name in \`$findCollectionKey${inside}\``
     );
 

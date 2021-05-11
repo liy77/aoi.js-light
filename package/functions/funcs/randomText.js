@@ -4,7 +4,7 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   let output = inside.splits[Math.floor(Math.random() * inside.splits.length)];
 

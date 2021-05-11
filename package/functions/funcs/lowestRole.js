@@ -6,7 +6,7 @@ module.exports = async d => {
     if (inside.inside) {
         const member = await d.message.guild.members.fetch(inside.inside).catch(err => {})
 
-        if (!member) return d.error(`:x: Invalid user ID in \`$lowestRole${inside}\``)
+        if (!member) return throw new Error(`:x: Invalid user ID in \`$lowestRole${inside}\``)
 
         else return {
             code: code.replaceLast(`$lowestRole${inside}`, (member.roles.cache.sort((x, y) => x.position - y.position).array().slice(1)[0] || "").id || "")

@@ -5,12 +5,12 @@ module.exports = async (d) => {
 
   const server = d.client.servers.get(d.message.guild.id);
 
-  if (!server) return d.error(`:x: Nothing is being played`);
+  if (!server) return throw new Error(`:x: Nothing is being played`);
 
   if (inside.inside) {
     const n = Number(inside.inside);
 
-    if (isNaN(n)) return d.error(`:x: Invalid number in \`$volume${inside}\``);
+    if (isNaN(n)) return throw new Error(`:x: Invalid number in \`$volume${inside}\``);
 
     server.connection.dispatcher.setVolume(n / 100);
     server.volume = n;

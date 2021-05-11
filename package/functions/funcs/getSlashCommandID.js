@@ -7,7 +7,7 @@ module.exports = async d => {
     
     const inside = code.split(`$getSlashCommandID`)[r].after()
 
-	if (!inside.inside) return d.error(`:x: Invalid usage in $getSlashCommandID${inside}`)
+	if (!inside.inside) return throw new Error(`:x: Invalid usage in $getSlashCommandID${inside}`)
     
     const [name, guildID = d.message.guild.id] = inside.splits
     let commands;
@@ -25,7 +25,7 @@ module.exports = async d => {
 
     
 
-    if (!commands) return d.error(`❌ Failed to fetch slash commands`) 
+    if (!commands) return throw new Error(`❌ Failed to fetch slash commands`) 
 
     
 
@@ -42,7 +42,7 @@ module.exports = async d => {
         }
     }).catch(err => null) 
     
-    if (!commands) return d.error(`❌ Failed to fetch slash commands`) 
+    if (!commands) return throw new Error(`❌ Failed to fetch slash commands`) 
     
     else commands = commands.data 
     

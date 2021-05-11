@@ -4,14 +4,14 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const [
         number,
         separator = ','
     ] = inside.splits
 
-    if (isNaN(Number(number))) return d.error(`:x: Invalid number in \`$numberSeparator${inside}\``)
+    if (isNaN(Number(number))) return throw new Error(`:x: Invalid number in \`$numberSeparator${inside}\``)
 
 	let separated = splitArray(number.split('').reverse(), 3)
 	separated = separated.reverse().map(num => num.reverse().join(''))

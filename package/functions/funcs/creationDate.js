@@ -10,7 +10,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [option, date = "date"] = inside.splits;
 
@@ -27,7 +27,7 @@ module.exports = async (d) => {
   if (!opt) {
     opt = await d.client.users.fetch(option).catch((err) => {});
 
-    if (!opt) return d.error(`:x: Invalid ID in \`$creationDate${inside}\``);
+    if (!opt) return throw new Error(`:x: Invalid ID in \`$creationDate${inside}\``);
   }
 
   if (date === "ms") {

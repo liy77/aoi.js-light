@@ -7,14 +7,14 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [index, value] = inside.splits;
 
   const n = Number(index);
 
   if (!n)
-    return d.error(`Invalid number in \`$editTextSplitElement${inside}\``);
+    return throw new Error(`Invalid number in \`$editTextSplitElement${inside}\``);
 
   d.array[n - 1] = value.addBrackets();
 

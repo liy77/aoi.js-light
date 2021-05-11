@@ -7,17 +7,17 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const [channelID, opt = "name", separator = ", "] = inside.splits;
 
   const channel = d.client.channels.cache.get(channelID);
 
   if (!channel)
-    return d.error(`❌ Invalid channel ID in \`$categoryChannels${inside}\``);
+    return throw new Error(`❌ Invalid channel ID in \`$categoryChannels${inside}\``);
 
   if (channel.type !== "category")
-    return d.error(`❌ This channel is not a category! `);
+    return throw new Error(`❌ This channel is not a category! `);
 
   return {
     code: code.replaceLast(

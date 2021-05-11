@@ -3,7 +3,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const [
 
@@ -51,7 +51,7 @@ module.exports = async d => {
 
 
 
-                if (!awaited) return d.error(`❌ Invalid awaited command '${ins}' in \`$serverLeaderboard${inside}\``) 
+                if (!awaited) return throw new Error(`❌ Invalid awaited command '${ins}' in \`$serverLeaderboard${inside}\``) 
 
 
 

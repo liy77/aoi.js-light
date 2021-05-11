@@ -12,7 +12,7 @@ module.exports = async d => {
 
         const m = await d.message.guild.members.fetch(userID).catch(Err => {})
 
-        if (!m) return d.error(`:x: Invalid user ID in \`$userRoles${inside}\``)
+        if (!m) return throw new Error(`:x: Invalid user ID in \`$userRoles${inside}\``)
 
         const OPT = {
             names: "name",

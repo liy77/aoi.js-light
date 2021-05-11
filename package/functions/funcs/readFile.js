@@ -3,14 +3,14 @@ module.exports = async d => {
     let code = d.command.code 
     const inside = d.unpack() 
     const err = d.inside(inside) 
-    if(err) return d.error(err)
+    if(err) return throw new Error(err)
     let res;
     let file = inside.inside 
 
    if(fs.existsSync(file)){
        res = fs.readFileSync(process.cwd()+"/"+file) 
        } else {
-          res =  d.error(`Couldn't Found the ${file}`)
+          res =  throw new Error(`Couldn't Found the ${file}`)
            }
 
     return{

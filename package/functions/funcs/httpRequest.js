@@ -16,7 +16,7 @@ module.exports = async d => {
 	const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
 	const header = {
 		'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) (dbd.js; https://www.npmjs.com/package/dbd.js)'
@@ -31,12 +31,12 @@ module.exports = async d => {
 		...headers
 	] = inside.splits
 
-	if (!url) return d.error(`:x: No url specified in \`$httpRequest${inside}\``)
+	if (!url) return throw new Error(`:x: No url specified in \`$httpRequest${inside}\``)
 
 	url = url.addBrackets()
 	method = method.toUpperCase()
 
-	if (!methods.includes(method)) return d.error(`:x: Invalid method '${method}' in \`$httpRequest${inside}\``)
+	if (!methods.includes(method)) return throw new Error(`:x: Invalid method '${method}' in \`$httpRequest${inside}\``)
 
 	for (let head of headers) {
 		head = head.addBrackets()

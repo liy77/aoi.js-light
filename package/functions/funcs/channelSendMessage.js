@@ -9,7 +9,7 @@ module.exports = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const fields = inside.splits;
 
@@ -18,7 +18,7 @@ module.exports = async (d) => {
   const channel = d.client.channels.cache.get(channelID);
 
   if (!channel)
-    return d.error(
+    return throw new Error(
       `:x: Invalid channel ID in \`$channelSendMessage${inside}\``
     );
 

@@ -4,12 +4,12 @@ module.exports = async (d) => {
   const inside = d.unpack();
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const n = Number(inside.inside);
 
   if (!n)
-    return d.error(
+    return throw new Error(
       `:x: Invalid number in \`$removeTextSplitElement${inside}\``
     );
 

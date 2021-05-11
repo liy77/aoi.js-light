@@ -11,7 +11,7 @@ module.exports = async (d) => {
     const channel = d.message.guild.channels.cache.get(inside);
 
     if (!channel)
-      return d.error(
+      return throw new Error(
         `❌ Invalid channel ID in \`$channelCategoryID${inside}\``
       );
 

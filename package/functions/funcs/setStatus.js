@@ -4,7 +4,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
 
     const [
         name,
@@ -20,7 +20,7 @@ module.exports = async d => {
         status: status 
     }).catch(err => {})
 
-    if (!bot) return d.error(`:x: Failed to change bot status`)
+    if (!bot) return throw new Error(`:x: Failed to change bot status`)
 
     return {
         code: code.replaceLast(`$setStatus${inside}`, "")

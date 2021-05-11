@@ -1,7 +1,7 @@
 module.exports = async d => {
 	const server = d.client.servers.get(d.message.guild.id)
 	
-	if (!server) return d.error(':x: Nothing is playing!')
+	if (!server) return throw new Error(':x: Nothing is playing!')
 	
 	if (server.loopSong === undefined) server.loopSong = false
 	

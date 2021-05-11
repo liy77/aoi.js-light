@@ -11,7 +11,7 @@ module.exports = async d => {
 
         const guild = d.client.guilds.cache.find(g => g.name === name.addBrackets())
 
-        if (!guild) return d.error(`:x: Invalid guild name in \`$guildID${after}\``)
+        if (!guild) return throw new Error(`:x: Invalid guild name in \`$guildID${after}\``)
 
         return {
             code: code.replaceLast(`$guildID${after}`, guild.id)

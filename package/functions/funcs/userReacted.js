@@ -4,7 +4,7 @@ module.exports = async d => {
     const inside = d.unpack()
 	const err = d.inside(inside)
 
-	if (err) return d.error(err)
+	if (err) return throw new Error(err)
     
     const fields = inside.splits 
     
@@ -14,14 +14,14 @@ module.exports = async d => {
     
     const [channelID, messageID, userID, reaction] = fields 
     
-    if (!reaction) return d.error(`❌ No emoji provided in \`$userReacted${inside}\``) 
+    if (!reaction) return throw new Error(`❌ No emoji provided in \`$userReacted${inside}\``) 
     const channel = d.client.channels.cache.get(channelID) 
     
-    if (!channel) return d.error(`❌ Invalid channel ID in \`$userReacted${inside}\``) 
+    if (!channel) return throw new Error(`❌ Invalid channel ID in \`$userReacted${inside}\``) 
     
     const m = await channel.messages.fetch(messageID).catch(err => null) 
     
-    if (!m) return d.error(`❌ Invalid message ID in \`$userReacted${inside}\``) 
+    if (!m) return throw new Error(`❌ Invalid message ID in \`$userReacted${inside}\``) 
     
     const emoji = reaction.includes("<") ? reaction.split(":")[2].split(">")[0] : reaction 
     

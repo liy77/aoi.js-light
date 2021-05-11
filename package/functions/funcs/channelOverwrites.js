@@ -17,7 +17,7 @@ module.exports = async (d) => {
   const channel = d.client.channels.cache.get(channelID);
 
   if (!channel)
-    return d.error(
+    return throw new Error(
       `❌ Invalid channel ID in \`$channelOverwrites${data.total}\``
     );
 

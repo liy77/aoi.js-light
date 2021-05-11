@@ -8,7 +8,7 @@ module.exports = async d => {
 
 	const inside = code.split("$parseDate")[r].after()
 
-	if (new Date(Number(inside.splits[0])).toLocaleString('en-US') === "Invalid Date") return d.error(":x: Invalid Date in $parseDate" + inside.total)
+	if (new Date(Number(inside.splits[0])).toLocaleString('en-US') === "Invalid Date") return throw new Error(":x: Invalid Date in $parseDate" + inside.total)
 	//what u doing
 
 	return {

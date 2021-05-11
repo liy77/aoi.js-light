@@ -7,7 +7,7 @@ const checkCondition = async (d) => {
 
   const err = d.inside(inside);
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
 
   const p = inside.splits;
 
@@ -22,7 +22,7 @@ const checkCondition = async (d) => {
   const op = operators();
 
   if (!operators)
-    return d.error(`:x: No valid operator in \`$checkCondition${inside}\``);
+    return throw new Error(`:x: No valid operator in \`$checkCondition${inside}\``);
 
   const fields = condition.split(op);
 

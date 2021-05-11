@@ -6,11 +6,11 @@ const getChannelVar = async d => {
 
 	const inside = code.split("$getChannelVar")[r].after()
 
-	if (!inside.inside) return d.error(`:x: Invalid usage in $getChannelVarl${inside}`)
+	if (!inside.inside) return throw new Error(`:x: Invalid usage in $getChannelVarl${inside}`)
 
 	const [variable, channelID = d.message.channel.id] = inside.splits
 
-	if (d.client.variables[variable] === undefined) return d.error(`❌ Variable '${variable}' not found!`)
+	if (d.client.variables[variable] === undefined) return throw new Error(`❌ Variable '${variable}' not found!`)
 
 	let item = await d.client.db.get("main", `${variable}_${channelID}`)
 

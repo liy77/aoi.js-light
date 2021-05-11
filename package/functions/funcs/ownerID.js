@@ -7,7 +7,7 @@ module.exports = async d => {
     if (inside.inside) {
         const guild = d.client.guilds.cache.get(inside.inside)
 
-        if (!guild) return d.error(`:x: Invalid guild ID in \`$ownerID${inside}\``)
+        if (!guild) return throw new Error(`:x: Invalid guild ID in \`$ownerID${inside}\``)
 
         return {
             code: code.replaceLast(`$ownerID${inside}`, guild.ownerID)

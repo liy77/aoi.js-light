@@ -36,7 +36,7 @@ const songOptions = require("../utils/songOptions");
 
 module.exports = async (d) => {
   if (!d.client.lavalink)
-    return d.error(
+    return throw new Error(
       `❌ Lavalink connection is required in \`$lavalinkExecute${inside.total}\`!`
     );
   const code = d.command.code;
@@ -44,11 +44,11 @@ module.exports = async (d) => {
   const err = d.inside(inside);
   let response = "";
 
-  if (err) return d.error(err);
+  if (err) return throw new Error(err);
   const [method, ...data] = inside.splits;
 
   if (!VALID_METHODS.includes(method))
-    return d.error(
+    return throw new Error(
       `❌ Invalid method was provided in \`$lavalinkExecute${inside.total}\`!`
     );
 
@@ -61,7 +61,7 @@ module.exports = async (d) => {
         const volume = new Number(data[0]);
 
         if (isNaN(volume))
-          return d.error(
+          return throw new Error(
             `❌ Argument is not a number in \`$lavalinkExecute${inside.total}\`!`
           );
         Player.setVolume(volume);
@@ -79,12 +79,12 @@ module.exports = async (d) => {
               ...json,
             });
           } catch (e) {
-            return d.error(
+            return throw new Error(
               `❌ Unexpected error when trying to send Packet in \`$lavalinkExecute${inside.total}\`!`
             );
           }
         } catch (n) {
-          return d.error(
+          return throw new Error(
             `❌ Failed to parse JSON in \`$lavalinkExecute${inside.total}\`!`
           );
         }
@@ -100,7 +100,7 @@ module.exports = async (d) => {
         const ms = new Number(data[0]);
 
         if (isNaN(ms))
-          return d.error(
+          return throw new Error(
             `❌ Argument is not a number in \`$lavalinkExecute${inside.total}\`!`
           );
         Player.seek(ms);
@@ -162,7 +162,7 @@ module.exports = async (d) => {
         let y = max * page - max;
 
         if (isNaN(page) || isNaN(max))
-          return d.error(
+          return throw new Error(
             `❌ Expected number in \`$lavalinkExecute${inside.total}\`!`
           );
         if (current.toLowerCase() === "no" && y < 1) y = 1;
@@ -194,12 +194,12 @@ module.exports = async (d) => {
     case "songinfo":
       {
         if (!songOptions[data[0]])
-          return d.error(
+          return throw new Error(
             `❌ Song Option does not exist, received \`${data[0]}\` in \`$lavalinkExecute${inside.total}\`!`
           );
 
         if (!Player.queue[0])
-          return d.error(
+          return throw new Error(
             `❌ Nothing was playing in \`$lavalinkExecute${inside.total}\`!`
           );
 
@@ -245,12 +245,12 @@ module.exports = async (d) => {
         const queryMethod = data[0].split(":")[0];
 
         if (check === null)
-          return d.error(
+          return throw new Error(
             `❌ Expected Voice Channel, instead received \`null\` in \`$lavalinkExecute${inside.total}\`!`
           );
 
         if (!SEARCH_METHODS.includes(queryMethod))
-          return d.error(
+          return throw new Error(
             `❌ Expected \`ytsearch\` or \`scsearch\` as search method, instead received \`${queryMethod}\` in \`$lavalinkExecute${inside.total}\`!`
           );
 
@@ -259,11 +259,11 @@ module.exports = async (d) => {
 
         if (!SUCCESS_RESULT.includes(res.loadType)) {
           if (res.loadType === "NO_MATCHES")
-            return d.error(
+            return throw new Error(
               `❌ No matches with query \`${data[0]}\` in \`$lavalinkExecute${inside.total}\`!`
             );
 
-          return d.error(
+          return throw new Error(
             `❌ Unexpected response \`LOAD_FAILED\` from Host in \`$lavalinkExecute${inside.total}\`!`
           );
         } else {
@@ -287,7 +287,7 @@ module.exports = async (d) => {
     case "join":
       {
         if (d.message.member.voice.channel === null)
-          return d.error(
+          return throw new Error(
             `❌ Expected Voice Channel, instead received \`null\` in \`$lavalinkExecute${inside.total}\`!`
           );
 
@@ -297,7 +297,7 @@ module.exports = async (d) => {
     case "connect":
       {
         if (d.message.member.voice.channel === null)
-          return d.error(
+          return throw new Error(
             `❌ Expected Voice Channel, instead received \`null\` in \`$lavalinkExecute${inside.total}\`!`
           );
 

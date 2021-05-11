@@ -8,7 +8,7 @@ module.exports = async d => {
 
         const guild = d.client.guilds.cache.get(guildID)
 
-        if (!guild) return d.error(`:x: Invalid guild ID in \`$systemChannelID${inside}\``)
+        if (!guild) return throw new Error(`:x: Invalid guild ID in \`$systemChannelID${inside}\``)
 
         return {
             code: code.replaceLast(`$systemChannelID${inside}`, guild.systemChannelID || "")
