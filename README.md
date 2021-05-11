@@ -31,18 +31,24 @@ It's swift and flexible using functions </br>
 ```js
 const Aoijs = require("aoi.js-light")
 
-const cacheClient = new Aoijs.Cache({
-  Guilds: true,
-  Channels: false,
-  Overwrites: false,
-  Roles: false,
-  Emojis: false,
-  Presences: false
+const bot = new Aoijs.Cache({
+    token: "",
+    prefix: "",
+    cache: {
+        Guilds: true,
+        Channels: false,
+        Overwrites: false,
+        Roles: false,
+        Emojis: false,
+        Presences: false
+    }
 });
 
-const bot = cacheClient.Bot({
-  token: "TOKEN", //Discord Bot Token
-  prefix: "!" //Customizable
+bot.onMessage() //Allows to run Commands
+
+bot.command({
+name: "ping", //Trigger name (command name)
+code: `$ping Pong!` //Code
 })
 ```
 
