@@ -20,6 +20,7 @@
     "axios": "^0.21.1",
     "danbot-hosting": "^0.1.6",
     "dbd.db": "^1.4.5",
+    "dbdjs.db": "^1.0.2",
     "dblapi.js": "^2.4.1",
     "discord-paginator.js": "^1.0.2",
     "discord.js-light": "^3.5.11",

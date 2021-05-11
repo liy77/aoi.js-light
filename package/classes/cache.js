@@ -1,13 +1,21 @@
+const AoiClient = require("./bot");
 module.exports = class Cache {
-    constructor(cache = {}) {
-        return {
+    constructor(options = {}) {
+        const cache = options.cache = {};
+        const Cache = {
             Guilds: cache.Guilds || true,
             Channels: cache.Channels || false,
             Overwrites: cache.Overwrites || false,
             Roles: cache.Roles || false,
             Emojis: cache.Emojis || false,
             Presences: cache.Presences || false,
-            Bot = require('./bot')(Guilds, Channels, Overwrites, Roles, Emojis, Presences)
         }
+
+        const Bot = new AoiClient({
+            token: options.token,
+            prefix: options.prefix
+        })
+
+        return Bot;
     }
 }
