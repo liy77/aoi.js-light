@@ -4,7 +4,7 @@
   </p>
 
 # Aoi.JS-Light
-[![NPM Downloads](https://img.shields.io/npm/dt/aoi.js.svg?maxAge=3600)](https://www.npmjs.com/package/aoi.js-light)
+[![NPM Downloads](https://img.shields.io/npm/dt/aoi.js-light.svg?maxAge=3600)](https://www.npmjs.com/package/aoi.js-light)
 [![Discord Server](https://img.shields.io/discord/773352845738115102?color=7289da&logo=discord&logoColor=white)](https://dbd.js.org/invite)
 
 ## Table Of Contents
