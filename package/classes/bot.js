@@ -28,11 +28,11 @@ const Database = new DBDdb.Database({
 });
 
 var cacheGuilds = true;
-var cacheChannels = false;
-var cacheOverwrites = false;
-var cacheRoles = false;
-var cacheEmojis = false;
-var cachePresences = false;
+var cacheChannels = true;
+var cacheOverwrites = true;
+var cacheRoles = true;
+var cacheEmojis = true;
+var cachePresences = true;
 
 module.exports = async (Guilds, Channels, Overwrites, Roles, Emojis, Presences) => {
   cacheGuilds = Guilds || cacheGuilds;
