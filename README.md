@@ -29,9 +29,9 @@ Original package: [Aoi.JS](https://www.npmjs.com/package/aoi.js)
 ### Setup
 ```js
 //This is light setup! (configurable cache)
-const Aoijs = require("aoi.js-light")
+const { Cache } = require("aoi.js-light")
 
-const bot = new Aoijs.Cache({
+const bot = new Cache({
     token: "TOKEN", //Discord Bot Token
     prefix: "!", //Customizable
     cache: {
@@ -56,9 +56,9 @@ code: `$ping Pong!` //Code
 
 ```js
 //This is normal setup! (with all cache)
-const Aoijs = require("aoi.js-light")
+const { Bot } = require("aoi.js-light")
 
-const bot = new Aoijs.Bot({
+const bot = new Bot({
 token: "TOKEN", //Discord Bot Token
 prefix: "!" //Customizable
 })
